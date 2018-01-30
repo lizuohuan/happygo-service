@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.magicbeans.happygo.mapper.ProductMapper">
+    <cache type="com.magicbeans.happygo.mybatis.cache.MybatisRedisCache"/>
+
+    <resultMap id="BaseResult" type="com.magicbeans.happygo.entity.Product">
+        <id column="id" property="id" />
+        <result column="name" property="name"/>
+        <result column="number" property="number"/>
+        <result column="describe" property="describe"/>
+        <result column="productCategoryId" property="productCategoryId"/>
+        <result column="price" property="price"/>
+        <result column="isPromotion" property="isPromotion"/>
+        <result column="promotionPrice" property="promotionPrice"/>
+        <result column="isIntegral" property="isIntegral"/>
+        <result column="integral" property="integral"/>
+        <result column="isHot" property="isHot"/>
+        <result column="create_time" property="create_time"/>
+        <result column="update_time" property="update_time"/>
+        <!-- 业务字段 -->
+        <result column="productCategoryName" property="productCategoryName"/>
+    </resultMap>
+
+    <!--<resultMap id="BaseResultBusiness" type="com.magicbeans.happygo.entity.Product" extends="BaseResult">
+        <result column="productCategoryName" property="productCategoryName"/>
+    </resultMap>-->
+</mapper>

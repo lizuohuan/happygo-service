@@ -62,13 +62,16 @@ public class User extends BaseEntity<User> {
     private String deviceToken;
 
     /** 设备类型 0:android  1:ios */
-    private String deviceType;
+    private Integer deviceType;
 
     /** 分销的上一级 */
     private Integer parentId;
 
     /** 用户状态，详细查询 StatusConstant.java*/
     private Integer status;
+
+    /** 积分 */
+    private Integer score;
 
 
     public String getPhone() {
@@ -208,11 +211,11 @@ public class User extends BaseEntity<User> {
         this.deviceToken = deviceToken;
     }
 
-    public String getDeviceType() {
+    public Integer getDeviceType() {
         return this.deviceType;
     }
 
-    public void setDeviceType(String deviceType) {
+    public void setDeviceType(Integer deviceType) {
         this.deviceType = deviceType;
     }
 
@@ -232,5 +235,15 @@ public class User extends BaseEntity<User> {
     /** 设置 用户状态，详细查询 StatusConstant.java*/
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    /** 获取 积分 */
+    public Integer getScore() {
+        return this.score;
+    }
+
+    /** 设置 积分 */
+    public void setScore(Integer score) {
+        this.score = score;
     }
 }

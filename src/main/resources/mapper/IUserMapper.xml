@@ -29,6 +29,7 @@
         <result column="deviceType" property="deviceType"/>
         <result column="parentId" property="parentId"/>
         <result column="status" property="status"/>
+        <result column="score" property="score"/>
     </resultMap>
 
 

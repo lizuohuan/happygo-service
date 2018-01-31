@@ -81,6 +81,8 @@ public class StatusConstant {
 	/** 审核中 */
 	public static final Integer ACCOUNT_APPROVED_ING = 2;
 
+	/** 登录有效时间  30天 */
+	public static final Integer LOGIN_VALID = 30;
 
 	
 }

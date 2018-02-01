@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.magicbeans.happygo.mapper.IncomeDetailMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.magicbeans.happygo.entity.IncomeDetail">
+        <result column="id" property="id"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="fromUserId" property="fromUserId"/>
+        <result column="toUserId" property="toUserId"/>
+        <result column="type" property="type"/>
+        <result column="productName" property="productName"/>
+        <result column="price" property="price"/>
+        <result column="number" property="number"/>
+        <result column="productCoverImg" property="productCoverImg"/>
+        <result column="bigDecimal" property="bigDecimal"/>
+        <result column="orderId" property="orderId"/>
+        <result column="productId" property="productId"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+    id,
+    create_time AS createTime,
+    update_time AS updateTime,
+        fromUserId, toUserId, `type`, productName, price, `number`, productCoverImg, bigDecimal, orderId, productId
+    </sql>
+
+
+    <select id="queryIncomeDetailByItem" resultMap="BaseResultMap">
+        SELECT
+            tid.*
+        FROM
+            t_income_detail tid
+        WHERE
+            tid.fromUserId = #{fromUserId}
+        AND tid.toUserId = #{toUserId}
+        ORDER BY
+            tid.create_time DESC
+        <if test="limit and limitSize != null">
+            LIMIT #{limit},#{limitSize}
+        </if>
+    </select>
+
+</mapper>

@@ -1,8 +1,10 @@
 package com.magicbeans.happygo.entity;
 
+import com.alibaba.fastjson.JSONArray;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.magicbeans.base.BaseEntity;
+import com.magicbeans.happygo.util.CommonUtil;
 
 import java.math.BigDecimal;
 
@@ -44,11 +46,22 @@ public class Product extends BaseEntity<Product> {
     /** 是否为热门商品 0：否 1：是 */
     private Integer isHot;
 
+    /** 封面图 */
+    private String coverImg;
+
+    /** 图片json集合 字符串类型 */
+    private String imgJsonAryStr;
+
+
     /********************  业务字段  ***********************/
 
     /** 商品分类名 */
     @TableField(exist=false)
     private String productCategoryName;
+
+    /** 图片json集合 */
+    @TableField(exist=false)
+    private JSONArray imgJsonArray;
 
     /** 获取 商品名 */
     public String getName() {
@@ -158,5 +171,39 @@ public class Product extends BaseEntity<Product> {
     /** 设置 商品分类名 */
     public void setProductCategoryName(String productCategoryName) {
         this.productCategoryName = productCategoryName;
+    }
+
+    /** 获取 封面图 */
+    public String getCoverImg() {
+        return this.coverImg;
+    }
+
+    /** 设置 封面图 */
+    public void setCoverImg(String coverImg) {
+        this.coverImg = coverImg;
+    }
+
+
+    /** 获取 图片json集合 字符串类型 */
+    public String getImgJsonAryStr() {
+        return this.imgJsonAryStr;
+    }
+
+    /** 设置 图片json集合 字符串类型 */
+    public void setImgJsonAryStr(String imgJsonAryStr) {
+        this.imgJsonAryStr = imgJsonAryStr;
+    }
+
+    /** 获取 图片json集合 */
+    public JSONArray getImgJsonArray() {
+        if (CommonUtil.isEmpty2(imgJsonAryStr)) {
+            return JSONArray.parseArray(imgJsonAryStr);
+        }
+        return this.imgJsonArray;
+    }
+
+    /** 设置 图片json集合 */
+    public void setImgJsonArray(JSONArray imgJsonArray) {
+        this.imgJsonArray = imgJsonArray;
     }
 }

@@ -23,7 +23,7 @@ public class SMSCode {
 
     private static String URI_SEND_SMS = "https://sms.yunpian.com/v1/sms/send.json";
 
-    private static String KEY = "";
+    private static String KEY = "23b63c2a52013d55b55b57b6a83ccbd1";
 
 
     public static boolean sendMessage(String text, String mobile) {

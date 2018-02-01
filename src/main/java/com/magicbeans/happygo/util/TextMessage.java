@@ -12,6 +12,6 @@ public class TextMessage {
     public static final Integer EXPIRE_TIME = 5;
 
     /**验证码类*/
-    public static final String MSG_CODE = "您的验证码是{0}。如非本人操作，请忽略本短信";
+    public static final String MSG_CODE = "【欢喜直通车】您的验证码是{0}。如非本人操作，请忽略本短信";
 
 }

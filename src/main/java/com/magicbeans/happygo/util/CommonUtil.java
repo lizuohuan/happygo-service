@@ -34,7 +34,7 @@ public class CommonUtil {
      */
     public static boolean isEmpty2(Object... args){
         for (Object arg : args) {
-            if(null != arg){
+            if(null != arg && !"".equals(arg)){
                 return true;
             }
             if(arg instanceof String ){

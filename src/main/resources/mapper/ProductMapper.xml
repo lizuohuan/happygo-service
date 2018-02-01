@@ -25,4 +25,25 @@
     <!--<resultMap id="BaseResultBusiness" type="com.magicbeans.happygo.entity.Product" extends="BaseResult">
         <result column="productCategoryName" property="productCategoryName"/>
     </resultMap>-->
+
+    <select id="searchProduct" resultType="com.magicbeans.happygo.vo.ProductVO">
+        SELECT
+            p.id AS productId,
+            p.`name` AS productName,
+            p.coverImg AS productCoverImg,
+            p.price AS price,
+            (SELECT COUNT(0) FROM t_comment tc WHERE p.id = tc.productId) AS comments,
+            (SELECT (SUM(tc.score) / COUNT(0)) FROM t_comment tc WHERE p.id = tc.productId) AS commentRatio
+        FROM
+            t_product p
+        WHERE
+          1 = 1
+          <if test="productName != null">
+              AND p.`name` LIKE '%${productName}%'
+          </if>
+          ORDER BY commentRatio DESC
+          <if test="limit != null and limitSize != null">
+              LIMIT #{limit},#{limitSize}
+          </if>
+    </select>
 </mapper>

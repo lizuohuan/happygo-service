@@ -11,7 +11,7 @@ import java.util.List;
  * 用户entity
  * Created by Eric Xie on 2018/1/30 0030.
  */
-@TableName("t_user")
+@TableName("t_users")
 public class User extends BaseEntity<User> {
 
     /** 手机号 */
@@ -80,14 +80,6 @@ public class User extends BaseEntity<User> {
 
     // 业务类
 
-    /** 一级分销 */
-    private List<DistributionUser> oneDistributionUserList;
-
-    /** 二级分销 */
-    private List<DistributionUser> twoDistributionUserList;
-
-    /** 三级分销 */
-    private List<DistributionUser> threeDistributionUserList;
 
 
     public String getPhone() {
@@ -263,33 +255,4 @@ public class User extends BaseEntity<User> {
         this.score = score;
     }
 
-    /** 获取 一级分销 */
-    public List<DistributionUser> getOneDistributionUserList() {
-        return this.oneDistributionUserList;
-    }
-
-    /** 设置 一级分销 */
-    public void setOneDistributionUserList(List<DistributionUser> oneDistributionUserList) {
-        this.oneDistributionUserList = oneDistributionUserList;
-    }
-
-    /** 获取 二级分销 */
-    public List<DistributionUser> getTwoDistributionUserList() {
-        return this.twoDistributionUserList;
-    }
-
-    /** 设置 二级分销 */
-    public void setTwoDistributionUserList(List<DistributionUser> twoDistributionUserList) {
-        this.twoDistributionUserList = twoDistributionUserList;
-    }
-
-    /** 获取 三级分销 */
-    public List<DistributionUser> getThreeDistributionUserList() {
-        return this.threeDistributionUserList;
-    }
-
-    /** 设置 三级分销 */
-    public void setThreeDistributionUserList(List<DistributionUser> threeDistributionUserList) {
-        this.threeDistributionUserList = threeDistributionUserList;
-    }
 }

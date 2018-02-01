@@ -36,6 +36,7 @@
         WHERE
             tid.fromUserId = #{fromUserId}
         AND tid.toUserId = #{toUserId}
+        AND tid.`type` NOT IN (2)
         ORDER BY
             tid.create_time DESC
         <if test="limit and limitSize != null">

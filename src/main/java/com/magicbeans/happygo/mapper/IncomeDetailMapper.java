@@ -28,4 +28,8 @@ public interface IncomeDetailMapper extends BaseMapper<IncomeDetail> {
     List<IncomeDetail> queryIncomeDetailByItem(@Param("fromUserId") String fromUserId,@Param("toUserId") String toUserId,
                                                @Param("limit") Integer limit,@Param("limitSize") Integer limitSize);
 
+
+
+
+
 }

@@ -19,6 +19,9 @@ public class ProductVO {
     /** 单价 */
     private BigDecimal price;
 
+    /** 促销价格 */
+    private BigDecimal promotionPrice;
+
     /** 商品评论数 */
     private Integer comments;
 
@@ -72,5 +75,15 @@ public class ProductVO {
 
     public void setCommentRatio(Double commentRatio) {
         this.commentRatio = commentRatio;
+    }
+
+    /** 获取 促销价格 */
+    public BigDecimal getPromotionPrice() {
+        return this.promotionPrice;
+    }
+
+    /** 设置 促销价格 */
+    public void setPromotionPrice(BigDecimal promotionPrice) {
+        this.promotionPrice = promotionPrice;
     }
 }

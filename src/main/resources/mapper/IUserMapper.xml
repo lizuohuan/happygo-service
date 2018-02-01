@@ -30,6 +30,7 @@
         <result column="parentId" property="parentId"/>
         <result column="status" property="status"/>
         <result column="score" property="score"/>
+        <result column="realName" property="realName"/>
     </resultMap>
 
 

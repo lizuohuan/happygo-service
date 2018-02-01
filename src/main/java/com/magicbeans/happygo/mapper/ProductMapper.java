@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.CacheNamespaceRef;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author lzh
@@ -25,5 +26,15 @@ public interface ProductMapper extends BaseMapper<Product> {
      */
     List<ProductVO> searchProduct(@Param("productName") String productName,
                                   @Param("limit") Integer limit, @Param("limitSize") Integer limitSize);
+
+    /**
+     * 获取商品列表
+     * @param map
+     * @return
+     */
+    List<ProductVO> getProduct(Map<String,Object> map);
+
+
+
 
 }

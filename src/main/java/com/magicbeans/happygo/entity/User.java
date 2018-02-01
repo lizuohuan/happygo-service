@@ -77,6 +77,8 @@ public class User extends BaseEntity<User> {
     /** 积分 */
     private Integer score;
 
+    /** 姓名字段 */
+    private String realName;
 
     // 业务类
 
@@ -255,4 +257,13 @@ public class User extends BaseEntity<User> {
         this.score = score;
     }
 
+    /** 获取 姓名字段 */
+    public String getRealName() {
+        return this.realName;
+    }
+
+    /** 设置 姓名字段 */
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
 }

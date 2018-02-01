@@ -1,5 +1,7 @@
 package com.magicbeans.happygo.entity;
 
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableName;
 import com.magicbeans.base.BaseEntity;
 
 import java.math.BigDecimal;
@@ -9,6 +11,7 @@ import java.math.BigDecimal;
  * @author lzh
  * @create 2018/1/30 15:29
  */
+@TableName("t_product")
 public class Product extends BaseEntity<Product> {
 
     /** 商品名 */
@@ -21,7 +24,7 @@ public class Product extends BaseEntity<Product> {
     private String describe;
 
     /** 商品分类id */
-    private Integer productCategoryId;
+    private String productCategoryId;
 
     /** 价格 */
     private BigDecimal price;
@@ -44,6 +47,7 @@ public class Product extends BaseEntity<Product> {
     /********************  业务字段  ***********************/
 
     /** 商品分类名 */
+    @TableField(exist=false)
     private String productCategoryName;
 
     /** 获取 商品名 */
@@ -77,12 +81,12 @@ public class Product extends BaseEntity<Product> {
     }
 
     /** 获取 商品分类id */
-    public Integer getProductCategoryId() {
+    public String getProductCategoryId() {
         return this.productCategoryId;
     }
 
     /** 设置 商品分类id */
-    public void setProductCategoryId(Integer productCategoryId) {
+    public void setProductCategoryId(String productCategoryId) {
         this.productCategoryId = productCategoryId;
     }
 

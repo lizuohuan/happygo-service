@@ -3,6 +3,7 @@ package com.magicbeans.happygo.service;
 import com.magicbeans.base.BaseService;
 import com.magicbeans.happygo.dto.DistributionUser;
 import com.magicbeans.happygo.entity.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -25,5 +26,12 @@ public interface IUserService extends BaseService<User> {
      * @return
      */
     Map<String,List<DistributionUser>> getDistributionUser(String userId,Integer pageNO,Integer pageSize);
+
+    /**
+     * 通过邀请码查询用户
+     * @param shareCode 邀请码
+     * @return
+     */
+    User getUserByShareCode(String shareCode);
 
 }

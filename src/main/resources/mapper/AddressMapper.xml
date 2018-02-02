@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.magicbeans.happygo.mapper.AddressMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.magicbeans.happygo.entity.Address">
+        <result column="id" property="id"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="cityId" property="cityId"/>
+        <result column="contacts" property="contacts"/>
+        <result column="phone" property="phone"/>
+        <result column="detailAddress" property="detailAddress"/>
+        <result column="isDefault" property="isDefault"/>
+        <result column="userId" property="userId"/>
+        <result column="isValid" property="isValid"/>
+        <result column="cityName" property="cityName"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+    id,
+    create_time AS createTime,
+    update_time AS updateTime,
+        cityId, contacts, phone, detailAddress, isDefault, userId
+    </sql>
+
+    <select id="queryAddress" resultMap="BaseResultMap">
+        SELECT ta.*,cc.mergerName AS cityName
+        FROM t_address ta,citys cc
+        WHERE  ta.cityId = cc.id
+        AND ta.userId  = #{userId}
+        ORDER BY ta.create_time DESC
+        <if test="limit != null and limitSize != null">
+            LIMIT #{limit},#{limitSize}
+        </if>
+    </select>
+
+    <select id="queryDefault" resultMap="BaseResultMap">
+        SELECT
+            ta.*, cc.mergerName AS cityName
+        FROM
+            t_address ta,
+            citys cc
+        WHERE
+            ta.cityId = cc.id
+            AND ta.userId = #{userId}
+            AND ta.isValid = 1
+            AND ta.isDefault = 1
+    </select>
+
+</mapper>

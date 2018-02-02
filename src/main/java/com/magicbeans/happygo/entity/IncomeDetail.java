@@ -29,7 +29,7 @@ public class IncomeDetail extends BaseEntity<IncomeDetail> {
      */
     private String toUserId;
     /**
-     * 收益来源类型 0:商品返回  1:积分红包兑换
+     * 收益来源类型 0:商品返回  1:积分红包兑换 2 : 支出
      */
     private Integer type;
     /**

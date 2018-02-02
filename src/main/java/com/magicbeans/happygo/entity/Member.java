@@ -24,7 +24,6 @@ public class Member extends BaseEntity<Member> {
 	private String password;
 
 
-
 	public String getPassword() {
 		return password;
 	}

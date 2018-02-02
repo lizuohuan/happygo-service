@@ -31,6 +31,7 @@
         <result column="status" property="status"/>
         <result column="score" property="score"/>
         <result column="realName" property="realName"/>
+        <result column="shareCode" property="shareCode"/>
     </resultMap>
 
 
@@ -71,6 +72,10 @@
             <if test="limit != null and limitSize != null">
                 LIMIT #{limit},#{limitSize}
             </if>
+    </select>
+
+    <select id="queryUserByShareCode" resultMap="BaseUser">
+        SELECT * FROM t_users WHERE shareCode = #{shareCode}
     </select>
 
 

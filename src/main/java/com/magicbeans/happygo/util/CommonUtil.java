@@ -34,14 +34,17 @@ public class CommonUtil {
      */
     public static boolean isEmpty2(Object... args){
         for (Object arg : args) {
-            if(null != arg && !"".equals(arg)){
+            if(null != arg){
+                if(arg instanceof String ){
+                    if( ((String) arg).trim().length() > 0 && !"null".equals(arg)){
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
                 return true;
             }
-            if(arg instanceof String ){
-                if( ((String) arg).trim().length() > 0 || !"null".equals(arg)){
-                    return true;
-                }
-            }
+
         }
         return false;
     }

@@ -7,6 +7,9 @@ import com.magicbeans.base.BaseEntity;
 import com.magicbeans.happygo.util.CommonUtil;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * 商品信息
@@ -59,9 +62,9 @@ public class Product extends BaseEntity<Product> {
     @TableField(exist=false)
     private String productCategoryName;
 
-    /** 图片json集合 */
+    /** 图片List集合 */
     @TableField(exist=false)
-    private JSONArray imgJsonArray;
+    private List<String> imgList = new ArrayList<>();
 
     /** 获取 商品名 */
     public String getName() {
@@ -194,16 +197,16 @@ public class Product extends BaseEntity<Product> {
         this.imgJsonAryStr = imgJsonAryStr;
     }
 
-    /** 获取 图片json集合 */
-    public JSONArray getImgJsonArray() {
+    /** 获取 图片List集合 */
+    public List<String> getImgList() {
         if (CommonUtil.isEmpty2(imgJsonAryStr)) {
-            return JSONArray.parseArray(imgJsonAryStr);
+            return Arrays.asList(imgJsonAryStr.split(","));
         }
-        return this.imgJsonArray;
+        return this.imgList;
     }
 
-    /** 设置 图片json集合 */
-    public void setImgJsonArray(JSONArray imgJsonArray) {
-        this.imgJsonArray = imgJsonArray;
+    /** 设置 图片List集合 */
+    public void setImgList(List<String> imgList) {
+        this.imgList = imgList;
     }
 }

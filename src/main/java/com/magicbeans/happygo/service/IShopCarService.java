@@ -32,4 +32,11 @@ public interface IShopCarService extends BaseService<ShopCar> {
      */
     ShopCar getShopCarByUser(String userId,String productId);
 
+
+    /***
+     * 批量删除
+     * @param ids
+     */
+    void del(List<String> ids);
+
 }

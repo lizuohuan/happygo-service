@@ -33,4 +33,13 @@ public class ShopCarServiceImpl extends BaseServiceImp<ShopCarMapper, ShopCar> i
     public ShopCar getShopCarByUser(String userId, String productId) {
         return shopCarMapper.queryShopCarByUser(userId,productId);
     }
+
+    @Override
+    public void del(List<String> ids) {
+        if(null != ids && ids.size() > 0){
+            shopCarMapper.batchDel(ids);
+        }
+    }
+
+
 }

@@ -34,4 +34,11 @@ public interface ShopCarMapper extends BaseMapper<ShopCar> {
      */
     ShopCar queryShopCarByUser(@Param("userId") String userId,@Param("productId") String productId);
 
+
+    /**
+     * 批量删除购物车
+     * @param ids
+     */
+    void batchDel(List<String> ids);
+
 }

@@ -4,6 +4,7 @@ import com.magicbeans.base.BaseService;
 import com.magicbeans.happygo.entity.IncomeDetail;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -24,5 +25,15 @@ public interface IIncomeDetailService extends BaseService<IncomeDetail> {
      * @return 收益明细集合
      */
     List<IncomeDetail> getIncomeDetail(String fromUserId,String toUserId,Integer pageNO,Integer pageSize);
+
+
+    /**
+     * 欢喜券页 统计
+     * 今日收益(todayIncome)、总券(balance)、
+     * 总收益(totalIncome)、欢喜积分(totalScore)、分销收益(distributionIncome)
+     * @param toUserId 用户ID
+     * @return
+     */
+    Map<String,Object> countIncome(String toUserId);
 
 }

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.magicbeans.happygo.mapper.CommentMapper">
+
+    <resultMap id="BaseResult" type="com.magicbeans.happygo.entity.Comment">
+        <id column="id" property="id" />
+        <id column="productId" property="productId" />
+        <id column="score" property="score" />
+        <id column="userId" property="userId" />
+        <id column="remark" property="remark" />
+        <id column="img" property="img" />
+        <result column="create_time" property="create_time"/>
+        <result column="update_time" property="update_time"/>
+        <!-- 业务字段 -->
+    </resultMap>
+
+
+
+    <select id="queryCommentByProduct" resultType="com.magicbeans.happygo.vo.CommentVO">
+        SELECT
+            tu.nickName AS nickName,
+            tu.profilePicture AS profilePicture,
+            tu.roleId AS roleId,
+            tc.score AS score,
+            tc.remark AS remark,
+            tc.img AS img,
+            tc.create_time AS createTime
+        FROM
+            t_comment tc,
+            t_users tu
+        WHERE
+            tc.userId = tu.id
+        AND tc.productId = #{productId}
+        ORDER BY tc.create_time DESC
+        <if test="limit != null and limitSize != null">
+            LIMIT #{limit},#{limitSize}
+        </if>
+    </select>
+
+
+    <select id="countProductComment" resultType="map">
+        SELECT
+            COUNT(0) AS total,
+            IFNULL((SUM(score) / COUNT(0)),0) AS goodRatio
+        FROM
+            t_comment
+        WHERE
+            productId = #{productId}
+    </select>
+
+</mapper>

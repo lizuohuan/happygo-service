@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -27,5 +28,16 @@ public interface IncomeDetailMapper extends BaseMapper<IncomeDetail> {
      */
     List<IncomeDetail> queryIncomeDetailByItem(@Param("fromUserId") String fromUserId,@Param("toUserId") String toUserId,
                                                @Param("limit") Integer limit,@Param("limitSize") Integer limitSize);
+
+
+    /**
+     * 欢喜券页 统计
+     * 今日收益(todayIncome)、总券(balance)、
+     * 总收益(totalIncome)、欢喜积分(totalScore)、分销收益(distributionIncome)
+     * @param toUserId 用户ID
+     * @return
+     */
+    Map<String,Object>  countIncome(@Param("toUserId") String toUserId);
+
 
 }

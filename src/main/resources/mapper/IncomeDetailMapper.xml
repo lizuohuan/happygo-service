@@ -36,11 +36,29 @@
         WHERE
             tid.fromUserId = #{fromUserId}
         AND tid.toUserId = #{toUserId}
+        AND tid.`type` NOT IN (2)
         ORDER BY
             tid.create_time DESC
         <if test="limit and limitSize != null">
             LIMIT #{limit},#{limitSize}
         </if>
+    </select>
+
+
+    <select id="countIncome" resultType="map">
+        SELECT
+            IFNULL(SUM(IFNULL(tid.bigDecimal,0)),0) AS balance,
+            IFNULL((SELECT SUM(IFNULL(tt.bigDecimal,0))
+            FROM t_income_detail tt WHERE DATE_FORMAT(tt.create_time,'%y-%m-%d') = DATE_FORMAT(NOW(),'%y-%m-%d')
+            AND tt.type = 1 AND tt.toUserId = tid.toUserId),0) AS todayIncome,
+            IFNULL((SELECT SUM(IFNULL(tt.bigDecimal,0)) FROM t_income_detail tt WHERE tt.type IN (0,1) AND tt.toUserId = tid.toUserId),0) AS totalIncome,
+            IFNULL((SELECT SUM(IFNULL(tt.bigDecimal,0)) FROM t_income_detail tt WHERE tt.type IN (0)
+                            AND tt.toUserId = tid.toUserId AND tt.toUserId != tt.fromUserId),0) AS distributionIncome,
+            IFNULL((SELECT SUM(score) FROM t_user_score us WHERE us.userId = tid.toUserId),0) AS totalScore
+        FROM
+            t_income_detail tid
+        WHERE
+            tid.toUserId = #{toUserId}
     </select>
 
 </mapper>

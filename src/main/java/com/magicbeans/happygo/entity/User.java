@@ -69,7 +69,7 @@ public class User extends BaseEntity<User> {
     private Integer deviceType;
 
     /** 分销的上一级 */
-    private Integer parentId;
+    private String parentId;
 
     /** 用户状态，详细查询 StatusConstant.java*/
     private Integer status;
@@ -79,6 +79,9 @@ public class User extends BaseEntity<User> {
 
     /** 姓名字段 */
     private String realName;
+
+    /** 邀请码 */
+    private String shareCode;
 
     // 业务类
 
@@ -229,11 +232,11 @@ public class User extends BaseEntity<User> {
         this.deviceType = deviceType;
     }
 
-    public Integer getParentId() {
+    public String getParentId() {
         return this.parentId;
     }
 
-    public void setParentId(Integer parentId) {
+    public void setParentId(String parentId) {
         this.parentId = parentId;
     }
 
@@ -265,5 +268,13 @@ public class User extends BaseEntity<User> {
     /** 设置 姓名字段 */
     public void setRealName(String realName) {
         this.realName = realName;
+    }
+
+    public String getShareCode() {
+        return this.shareCode;
+    }
+
+    public void setShareCode(String shareCode) {
+        this.shareCode = shareCode;
     }
 }

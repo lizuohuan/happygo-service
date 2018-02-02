@@ -34,4 +34,6 @@ public interface IUserMapper extends BaseMapper<User> {
     List<DistributionUser> queryDistributionUser(@Param("userId") String userId, @Param("levelType") Integer levelType,
                                                  @Param("limit") Integer limit, @Param("limitSize") Integer limitSize);
 
+
+    User queryUserByShareCode(@Param("shareCode") String shareCode);
 }

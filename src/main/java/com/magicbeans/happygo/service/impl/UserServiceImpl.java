@@ -34,4 +34,10 @@ public class UserServiceImpl extends BaseServiceImp<IUserMapper,User> implements
         data.put("three",userMapper.queryDistributionUser(userId,3,null,null));
         return data;
     }
+
+
+    @Override
+    public User getUserByShareCode(String shareCode) {
+        return userMapper.queryUserByShareCode(shareCode);
+    }
 }

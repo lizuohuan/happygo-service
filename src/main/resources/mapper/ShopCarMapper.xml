@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.magicbeans.happygo.mapper.ShopCarMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.magicbeans.happygo.entity.ShopCar">
+    <result column="id" property="id" />
+    <result column="create_time" property="createTime" />
+    <result column="update_time" property="updateTime" />
+        <result column="productId" property="productId" />
+        <result column="number" property="number" />
+        <result column="userId" property="userId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+    id,
+    create_time AS createTime,
+    update_time AS updateTime,
+        productId, number, userId
+    </sql>
+
+
+    <select id="queryShopCar" resultType="com.magicbeans.happygo.vo.ShopCarVO">
+        SELECT
+            p.id AS productId,
+            p.`name` AS productName,
+            p.coverImg AS productCover,
+            p.price AS price,
+            sc.number AS number,
+            sc.id AS id
+        FROM
+            t_shop_car sc,
+            t_product p
+        WHERE
+            sc.productId = p.id
+            AND sc.userId = #{userId}
+    </select>
+
+    <select id="queryShopCarByUser" resultMap="BaseResultMap">
+        SELECT * FROM t_shop_car WHERE userId = #{userId} AND productId = #{productId}
+    </select>
+
+</mapper>

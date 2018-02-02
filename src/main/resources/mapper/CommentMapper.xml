@@ -42,7 +42,7 @@
     <select id="countProductComment" resultType="map">
         SELECT
             COUNT(0) AS total,
-            (SUM(score) / COUNT(0)) AS goodRatio
+            IFNULL((SUM(score) / COUNT(0)),0) AS goodRatio
         FROM
             t_comment
         WHERE

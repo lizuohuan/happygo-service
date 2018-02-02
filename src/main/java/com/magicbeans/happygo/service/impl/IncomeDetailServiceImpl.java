@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -26,5 +27,10 @@ public class IncomeDetailServiceImpl extends BaseServiceImp<IncomeDetailMapper, 
     @Override
     public List<IncomeDetail> getIncomeDetail(String fromUserId, String toUserId, Integer pageNO, Integer pageSize) {
         return incomeDetailMapper.queryIncomeDetailByItem(fromUserId,toUserId,(pageNO - 1) * pageSize,pageSize);
+    }
+
+    @Override
+    public Map<String, Object> countIncome(String toUserId) {
+        return incomeDetailMapper.countIncome(toUserId);
     }
 }

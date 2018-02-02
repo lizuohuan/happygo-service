@@ -31,4 +31,10 @@ public interface IAddressService extends BaseService<Address> {
      */
     Address getDefaultAddress(String userId);
 
+
+    void setDefault(String id,String userId);
+
+
+    void addOrUpdate(Address address,String userId);
+
 }

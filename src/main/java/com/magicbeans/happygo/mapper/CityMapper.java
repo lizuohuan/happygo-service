@@ -21,6 +21,8 @@ public interface CityMapper {
      */
     List<City> queryCityByParentId(@Param("cityId") Integer parentId, @Param("levelType") Integer levelType);
 
+    List<City> queryAllCity();
 
+    City queryCityById(@Param("cityId") Integer cityId);
 
 }

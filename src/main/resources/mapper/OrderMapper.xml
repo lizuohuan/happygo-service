@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.magicbeans.happygo.mapper.OrderMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.magicbeans.happygo.entity.Order">
+    <result column="id" property="id" />
+    <result column="create_time" property="createTime" />
+    <result column="update_time" property="updateTime" />
+        <result column="orderNumber" property="orderNumber" />
+        <result column="userId" property="userId" />
+        <result column="status" property="status" />
+        <result column="addressId" property="addressId" />
+        <result column="price" property="price" />
+        <result column="payMethod" property="payMethod" />
+        <result column="freight" property="freight" />
+        <result column="userIsValid" property="userIsValid" />
+        <result column="bankImg" property="bankImg" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+    id,
+    create_time AS createTime,
+    update_time AS updateTime,
+        orderNumber, userId, status, addressId, price, payMethod, freight
+    </sql>
+
+    <select id="countOrderPrice" resultType="decimal">
+        SELECT
+            IFNULL(
+                SUM(CASE p.isPromotion WHEN 1 THEN p.promotionPrice
+                                                         ELSE p.price END * tp.number),0) AS price
+        FROM
+            t_order_product tp,
+            t_product p
+        WHERE
+            tp.orderId = #{orderId}
+        AND tp.productId = p.id
+    </select>
+
+</mapper>

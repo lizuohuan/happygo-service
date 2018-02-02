@@ -84,5 +84,43 @@ public class StatusConstant {
 	/** 登录有效时间  30天 */
 	public static final Integer LOGIN_VALID = 30;
 
+
+	// 订单状态
+
+	/** 订单待支付 */
+	public static final Integer ORDER_WAITING_PAY = 0;
+
+	/** 订单已支付 */
+	public static final Integer ORDER_PAID = 1;
+
+	/** 订单待发货 */
+	public static final Integer ORDER_WAITING_SEND = 2;
+
+	/** 订单已发货 */
+	public static final Integer ORDER_SENT = 3;
+
+	/** 订单已完成 */
+	public static final Integer ORDER_FINISHED = 4;
+
+
+	// 订单支付方式
+
+	/** 订单支付 - 支付宝 */
+	public static final Integer PAY_METHOD_ALIPAY = 0;
+
+	/** 订单支付 - 微信 */
+	public static final Integer PAY_METHOD_WECHAT = 1;
+
+	/** 订单支付 - 欢喜券 */
+	public static final Integer PAY_METHOD_HXQ = 2;
+
+	/** 订单支付 - 线下 */
+	public static final Integer PAY_METHOD_UNDER_LINE = 3;
+
+
+
+
+
+
 	
 }

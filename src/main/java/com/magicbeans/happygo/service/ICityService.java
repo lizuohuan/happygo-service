@@ -17,4 +17,9 @@ public interface ICityService {
      */
     List<City> getCityByParentId(Integer parentId, Integer levelType);
 
+
+    List<City> getAllCity();
+
+
+    City getCityById(Integer cityId);
 }

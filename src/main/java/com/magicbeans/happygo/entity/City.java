@@ -1,5 +1,6 @@
 package com.magicbeans.happygo.entity;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 
 import java.io.Serializable;
@@ -62,6 +63,10 @@ public class City implements Serializable {
 
     private String lat;
 
+
+    /** 城市下的城市列表 */
+    @TableField(exist = false)
+    private List<City> cityList = new ArrayList<City>();
 
     /**
      * 获取 ID
@@ -204,5 +209,15 @@ public class City implements Serializable {
 
     public void setLat(String lat) {
         this.lat = lat;
+    }
+
+    /** 获取 城市下的城市列表 */
+    public List<City> getCityList() {
+        return this.cityList;
+    }
+
+    /** 设置 城市下的城市列表 */
+    public void setCityList(List<City> cityList) {
+        this.cityList = cityList;
     }
 }

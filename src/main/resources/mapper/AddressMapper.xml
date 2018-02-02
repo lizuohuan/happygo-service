@@ -30,6 +30,7 @@
         FROM t_address ta,citys cc
         WHERE  ta.cityId = cc.id
         AND ta.userId  = #{userId}
+        AND ta.isValid = 1
         ORDER BY ta.create_time DESC
         <if test="limit != null and limitSize != null">
             LIMIT #{limit},#{limitSize}

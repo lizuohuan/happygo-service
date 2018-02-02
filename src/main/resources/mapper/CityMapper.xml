@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.magicbeans.happygo.mapper.CityMapper">
+
+    <resultMap id="BaseCity" type="com.magicbeans.happygo.entity.City">
+        <result column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="parentId" property="parentId" />
+        <result column="shortName" property="shortName" />
+        <result column="levelType" property="levelType" />
+        <result column="cityCode" property="cityCode" />
+        <result column="zipCode" property="zipCode" />
+        <result column="mergerName" property="mergerName" />
+        <result column="pinYin" property="pinYin" />
+        <result column="lng" property="lng" />
+        <result column="lat" property="lat" />
+    </resultMap>
+
+    <select id="queryCityByParentId" resultMap="BaseCity">
+        SELECT * FROM citys
+        WHERE 1=1
+        <if test="cityId != null">
+            AND parentId = #{cityId}
+        </if>
+        <if test="levelType != null">
+            AND levelType = #{levelType}
+        </if>
+    </select>
+
+
+</mapper>

@@ -18,8 +18,6 @@ import com.magicbeans.base.BaseEntity;
 @TableName("t_user_score")
 public class UserScore extends BaseEntity<UserScore> {
 
-    private static final long serialVersionUID = 1L;
-
     /**
      * 订单ID
      */

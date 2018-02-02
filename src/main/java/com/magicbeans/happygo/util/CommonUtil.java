@@ -88,5 +88,17 @@ public class CommonUtil {
     }
 
 
+    public static String formatCityName(String cityName){
+        if(isEmpty(cityName)){
+            return "";
+        }
+        String s = cityName.substring(2, cityName.length()).replaceAll(",", "");
+        if(s.indexOf("省") < 0 ){
+            s = s.substring(2,s.length());
+        }
+        return s;
+    }
+
+
 
 }

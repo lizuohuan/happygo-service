@@ -4,12 +4,12 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.magicbeans.happygo.entity.ShopCar">
-    <result column="id" property="id" />
-    <result column="create_time" property="createTime" />
-    <result column="update_time" property="updateTime" />
-        <result column="productId" property="productId" />
-        <result column="number" property="number" />
-        <result column="userId" property="userId" />
+        <result column="id" property="id"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="productId" property="productId"/>
+        <result column="number" property="number"/>
+        <result column="userId" property="userId"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
@@ -19,6 +19,14 @@
     update_time AS updateTime,
         productId, number, userId
     </sql>
+
+
+    <select id="batchQueryShopCar" resultMap="BaseResultMap">
+        SELECT * FROM t_shop_car WHERE id IN
+        <foreach collection="list" index="index" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </select>
 
 
     <select id="queryShopCar" resultType="com.magicbeans.happygo.vo.ShopCarVO">

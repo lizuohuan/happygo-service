@@ -41,5 +41,11 @@ public class ShopCarServiceImpl extends BaseServiceImp<ShopCarMapper, ShopCar> i
         }
     }
 
-
+    @Override
+    public List<ShopCar> getShopCar(List<String> shopCarIds) {
+        if(null == shopCarIds || shopCarIds.size() == 0){
+            return null;
+        }
+        return shopCarMapper.batchQueryShopCar(shopCarIds);
+    }
 }

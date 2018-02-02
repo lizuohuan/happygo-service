@@ -28,5 +28,17 @@
         </if>
     </select>
 
+    <select id="queryAllCity" resultMap="BaseCity">
+        SELECT * FROM citys
+    </select>
+
+
+
+    <select id="queryCityById" resultMap="BaseCity">
+        SELECT * FROM citys WHERE id = #{cityId}
+    </select>
+
+
+
 
 </mapper>

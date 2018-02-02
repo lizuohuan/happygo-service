@@ -18,6 +18,10 @@ import java.util.List;
 public interface ShopCarMapper extends BaseMapper<ShopCar> {
 
 
+
+
+    List<ShopCar> batchQueryShopCar(List<String> shopCarIds);
+
     /**
      *  查询用户的购物车
      * @param userId 用户

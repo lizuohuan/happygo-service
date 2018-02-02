@@ -16,6 +16,9 @@ import java.util.List;
  */
 public interface IShopCarService extends BaseService<ShopCar> {
 
+
+    List<ShopCar> getShopCar(List<String> shopCarIds);
+
     /**
      * 获取用户的购物车
      * @param userId 用户ID

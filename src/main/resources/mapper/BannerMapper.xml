@@ -29,6 +29,18 @@
         FROM t_banner b
         LEFT JOIN t_product p ON b.productId = p.id
         WHERE 1 = 1
+        <if test="title != null and title != ''">
+            AND b.title like '%${title}%'
+        </if>
+        <if test="name != null and name != ''">
+            AND b.name like '%${name}%'
+        </if>
+        <if test="productName != null and productName != ''">
+            AND p.name like '%${productName}%'
+        </if>
+        <if test="type != null">
+            AND b.type = #{type}
+        </if>
         <if test="createTimeStart != null">
             AND b.create_time <![CDATA[ >= ]]> #{createTimeStart}
         </if>
@@ -37,8 +49,8 @@
         </if>
         ORDER BY
         a.create_time DESC
-        <if test="pageArgs != null">
-            limit #{pageArgs.pageStart}, #{pageArgs.pageSize}
+        <if test="pages != null">
+            limit #{pages.current}, #{pages.size}
         </if>
     </select>
 
@@ -49,6 +61,18 @@
         FROM t_banner b
         LEFT JOIN t_product p ON b.productId = p.id
         WHERE 1 = 1
+        <if test="title != null and title != ''">
+            AND b.title like '%${title}%'
+        </if>
+        <if test="name != null and name != ''">
+            AND b.name like '%${name}%'
+        </if>
+        <if test="productName != null and productName != ''">
+            AND p.name like '%${productName}%'
+        </if>
+        <if test="type != null">
+            AND b.type = #{type}
+        </if>
         <if test="createTimeStart != null">
             AND b.create_time <![CDATA[ >= ]]> #{createTimeStart}
         </if>

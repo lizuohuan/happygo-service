@@ -102,6 +102,12 @@ public class StatusConstant {
 	/** 订单已完成 */
 	public static final Integer ORDER_FINISHED = 4;
 
+	/** 取消订单 */
+	public static final Integer ORDER_CANCEL = 5;
+
+	/** 申请退款中 */
+	public static final Integer ORDER_REFUND = 6;
+
 
 	// 订单支付方式
 

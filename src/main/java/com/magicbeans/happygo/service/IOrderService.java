@@ -2,6 +2,7 @@ package com.magicbeans.happygo.service;
 
 import com.magicbeans.happygo.entity.Order;
 import com.magicbeans.base.BaseService;
+import com.magicbeans.happygo.vo.OrderListVO;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -59,5 +60,16 @@ public interface IOrderService extends BaseService<Order> {
      * @param status 确认支付 更改值为 1，如果不确认 则更改为 2
      */
     void confirmUnderOrder(String orderId,String currentUserId,Integer status);
+
+
+    /**
+     * 分页获取订单列表
+     * @param userId
+     * @param status
+     * @param pageNO
+     * @param pageSize
+     * @return
+     */
+    List<OrderListVO> getOrderList(String userId,Integer status,Integer pageNO,Integer pageSize);
 
 }

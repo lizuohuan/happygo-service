@@ -2,6 +2,7 @@ package com.magicbeans.happygo.service;
 
 import com.magicbeans.happygo.entity.Order;
 import com.magicbeans.base.BaseService;
+import com.magicbeans.happygo.vo.OrderDetailVO;
 import com.magicbeans.happygo.vo.OrderListVO;
 
 import java.math.BigDecimal;
@@ -71,5 +72,13 @@ public interface IOrderService extends BaseService<Order> {
      * @return
      */
     List<OrderListVO> getOrderList(String userId,Integer status,Integer pageNO,Integer pageSize);
+
+
+    /**
+     * 获取订单详情，包括收货信息和商品信息列表
+     * @param orderId 订单ID
+     * @return 订单
+     */
+    OrderDetailVO getOrderById(String orderId);
 
 }

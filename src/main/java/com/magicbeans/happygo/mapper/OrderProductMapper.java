@@ -24,6 +24,13 @@ public interface OrderProductMapper extends BaseMapper<OrderProduct> {
      */
     List<OrderProduct> queryOrderProductByOrder(@Param("orderId") String orderId);
 
+    /**
+     * 通过订单ID 查询订单相关的产品信息
+     * @param orderId 订单ID
+     * @return 产品信息
+     */
+    List<OrderProduct> queryOrderProduct(@Param("orderId") String orderId);
+
 
 
 }

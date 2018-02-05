@@ -23,7 +23,7 @@
         productId, img, link, `type`
     </sql>
 
-    <select id="list" resultType="com.magicbeans.happygo.entity.Banner" parameterType="map">
+    <select id="list" resultMap="BaseResultMapProduct" parameterType="map">
         SELECT
         b.*,p.name AS p_name
         FROM t_banner b
@@ -48,7 +48,7 @@
             AND b.create_time <![CDATA[ <= ]]> #{createTimeEnd}
         </if>
         ORDER BY
-        a.create_time DESC
+        b.create_time DESC
         <if test="pages != null">
             limit #{pages.current}, #{pages.size}
         </if>

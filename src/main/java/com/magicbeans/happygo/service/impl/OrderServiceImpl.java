@@ -1,6 +1,10 @@
 package com.magicbeans.happygo.service.impl;
 
 import com.magicbeans.happygo.entity.*;
+import com.magicbeans.base.Pages;
+import com.magicbeans.happygo.entity.Order;
+import com.magicbeans.happygo.entity.OrderProduct;
+import com.magicbeans.happygo.entity.ShopCar;
 import com.magicbeans.happygo.exception.InterfaceCommonException;
 import com.magicbeans.happygo.mapper.*;
 import com.magicbeans.happygo.service.IOrderService;
@@ -349,6 +353,17 @@ public class OrderServiceImpl extends BaseServiceImp<OrderMapper, Order> impleme
             detail.setOrderProducts(orderProductList);
         }
         return detail;
+    }
+
+    /**
+     * 后台订单列表
+     * @param pages
+     * @param map
+     * @return
+     */
+    @Override
+    public Pages<Order> list(Pages pages, Map<String, Object> map) {
+        return null;
     }
 
     @Override

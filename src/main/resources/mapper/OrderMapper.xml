@@ -16,6 +16,9 @@
         <result column="freight" property="freight" />
         <result column="userIsValid" property="userIsValid" />
         <result column="bankImg" property="bankImg" />
+        <result column="adminOk" property="adminOk" />
+        <result column="adminId" property="adminId" />
+        <result column="expressNumber" property="expressNumber" />
     </resultMap>
 
     <!-- 通用查询结果列 -->

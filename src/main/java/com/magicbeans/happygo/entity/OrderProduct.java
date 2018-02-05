@@ -3,7 +3,10 @@ package com.magicbeans.happygo.entity;
 import java.io.Serializable;
 
 import java.math.BigDecimal;
+import java.util.List;
+
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.magicbeans.base.BaseEntity;
 
@@ -20,7 +23,14 @@ public class OrderProduct extends BaseEntity<OrderProduct> {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 订单ID
+     */
     private String orderId;
+
+    /**
+     * 产品ID
+     */
     private String productId;
     /**
      * 数量
@@ -42,6 +52,11 @@ public class OrderProduct extends BaseEntity<OrderProduct> {
      * 产品JSON明细数据
      */
     private String productDetail;
+
+    // 业务字段
+
+    @TableField(exist=false)
+    private Product product;
 
 
     public String getOrderId() {
@@ -116,5 +131,14 @@ public class OrderProduct extends BaseEntity<OrderProduct> {
         ", productCover=" + productCover +
         ", productDetail=" + productDetail +
         "}";
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public OrderProduct setProduct(Product product) {
+        this.product = product;
+        return this;
     }
 }

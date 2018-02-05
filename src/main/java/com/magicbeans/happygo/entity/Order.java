@@ -55,6 +55,49 @@ public class Order extends BaseEntity<Order> {
     /** 上传的流水图 */
     private String bankImg;
 
+    /**
+     * 如果为线下支付，后台需要确认此订单已经支付，
+     * 如果确认已经支付 更改值为1，
+     * 如果不确认 则更改为 2
+     * 初始化为 0
+     */
+    private Integer adminOk;
+
+    /**
+     * 操作此线下订单确认的后台管理者
+     */
+    private String adminId;
+
+    /** 快递单号 */
+    private String expressNumber;
+
+
+    public String getExpressNumber() {
+        return expressNumber;
+    }
+
+    public Order setExpressNumber(String expressNumber) {
+        this.expressNumber = expressNumber;
+        return this;
+    }
+
+    public String getAdminId() {
+        return adminId;
+    }
+
+    public Order setAdminId(String adminId) {
+        this.adminId = adminId;
+        return this;
+    }
+
+    public Integer getAdminOk() {
+        return adminOk;
+    }
+
+    public Order setAdminOk(Integer adminOk) {
+        this.adminOk = adminOk;
+        return this;
+    }
 
     public String getOrderNumber() {
         return orderNumber;

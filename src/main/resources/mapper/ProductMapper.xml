@@ -18,8 +18,8 @@
         <result column="integral" property="integral"/>
         <result column="isHot" property="isHot"/>
         <result column="ticket" property="ticket"/>
-        <result column="create_time" property="create_time"/>
-        <result column="update_time" property="update_time"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
         <!-- 业务字段 -->
         <result column="productCategoryName" property="productCategoryName"/>
     </resultMap>

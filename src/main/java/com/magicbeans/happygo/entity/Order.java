@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import java.math.BigDecimal;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.magicbeans.base.BaseEntity;
 
@@ -70,6 +71,21 @@ public class Order extends BaseEntity<Order> {
 
     /** 快递单号 */
     private String expressNumber;
+
+
+    /*********************** 业务字段 ************************/
+
+    /** 购买人 */
+    @TableField(exist = false)
+    private String userName;
+
+    /** 收货地址 */
+    @TableField(exist = false)
+    private String address;
+
+    /** 后台操作人员 */
+    @TableField(exist = false)
+    private String adminName;
 
 
     public String getExpressNumber() {
@@ -191,5 +207,35 @@ public class Order extends BaseEntity<Order> {
     /** 设置 上传的流水图 */
     public void setBankImg(String bankImg) {
         this.bankImg = bankImg;
+    }
+
+    /** 获取 购买人 */
+    public String getUserName() {
+        return this.userName;
+    }
+
+    /** 设置 购买人 */
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    /** 获取 收货地址 */
+    public String getAddress() {
+        return this.address;
+    }
+
+    /** 设置 收货地址 */
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    /** 获取 后台操作人员 */
+    public String getAdminName() {
+        return this.adminName;
+    }
+
+    /** 设置 后台操作人员 */
+    public void setAdminName(String adminName) {
+        this.adminName = adminName;
     }
 }

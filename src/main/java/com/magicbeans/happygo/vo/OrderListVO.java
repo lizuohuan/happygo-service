@@ -2,6 +2,7 @@ package com.magicbeans.happygo.vo;
 
 import com.magicbeans.happygo.entity.OrderProduct;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -18,11 +19,36 @@ public class OrderListVO {
     /** 订单状态 */
     private Integer status;
 
+    /** 订单总价 */
+    private BigDecimal price;
+
+    /** 订单运费 */
+    private BigDecimal freight;
+
+
     /** 产品 */
     private List<OrderProduct> products;
 
     public String getOrderId() {
         return orderId;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public OrderListVO setPrice(BigDecimal price) {
+        this.price = price;
+        return this;
+    }
+
+    public BigDecimal getFreight() {
+        return freight;
+    }
+
+    public OrderListVO setFreight(BigDecimal freight) {
+        this.freight = freight;
+        return this;
     }
 
     public OrderListVO setOrderId(String orderId) {

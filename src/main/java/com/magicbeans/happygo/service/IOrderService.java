@@ -5,6 +5,7 @@ import com.magicbeans.base.db.Filter;
 import com.magicbeans.base.exception.BusinessException;
 import com.magicbeans.happygo.entity.Order;
 import com.magicbeans.base.BaseService;
+import com.magicbeans.happygo.vo.OrderDetailVO;
 import com.magicbeans.happygo.vo.OrderListVO;
 
 import java.math.BigDecimal;
@@ -83,4 +84,12 @@ public interface IOrderService extends BaseService<Order> {
      * @return
      */
     Pages<Order> list(Pages pages, Map<String ,Object> map);
+
+    /**
+     * 获取订单详情，包括收货信息和商品信息列表
+     * @param orderId 订单ID
+     * @return 订单
+     */
+    OrderDetailVO getOrderById(String orderId);
+
 }

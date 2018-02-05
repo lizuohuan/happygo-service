@@ -42,4 +42,59 @@
         AND tp.productId = p.id
     </select>
 
+
+    <resultMap id="OrderListVO" type="com.magicbeans.happygo.vo.OrderListVO">
+        <result column="orderId" property="orderId"/>
+        <result column="orderNumber" property="orderNumber"/>
+        <result column="status" property="status"/>
+        <result column="price" property="price"/>
+        <result column="freight" property="freight"/>
+        <association property="products" column="orderId" select="com.magicbeans.happygo.mapper.OrderProductMapper.queryOrderProduct"/>
+    </resultMap>
+
+    <select id="queryOrderList" resultType="com.magicbeans.happygo.vo.OrderDetailVO">
+        SELECT
+            o.id AS orderId,
+            o.orderNumber,
+            o.`status`,
+            o.price,
+            o.freight
+        FROM
+            t_order o
+        WHERE
+            o.userId = #{userId}
+        AND o.userIsValid = 1
+        <if test="status != null">
+            AND o.`status` = #{status}
+        </if>
+        ORDER BY o.create_time DESC
+        <if test="limit != null  and limitSize != null">
+            LIMIT #{limit},#{limitSize}
+        </if>
+    </select>
+
+    <select id="queryOrderDetail" resultType="com.magicbeans.happygo.vo.OrderDetailVO">
+        SELECT
+            o.id AS orderId,
+            o.orderNumber,
+            o.`status`,
+            o.price,
+            o.freight,
+            o.create_time AS createTime,
+            CASE o.payMethod WHEN 0 THEN '支付宝支付'
+                                             WHEN 1 THEN '微信支付'
+                                             WHEN 2 THEN '欢喜券支付'
+                                             WHEN 3 THEN '线下支付'
+                                             ELSE '无' END AS payMethod,
+            CONCAT(cc.mergerName,ta.detailAddress) AS `address`,
+            ta.contacts AS consignee,
+            ta.phone AS phone
+        FROM
+            t_order o
+        LEFT JOIN t_address ta ON o.addressId = ta.id
+        LEFT JOIN citys cc ON cc.id = ta.cityId
+        WHERE
+            o.id = #{orderId}
+    </select>
+
 </mapper>

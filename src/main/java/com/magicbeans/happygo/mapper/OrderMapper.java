@@ -2,9 +2,12 @@ package com.magicbeans.happygo.mapper;
 
 import com.magicbeans.happygo.entity.Order;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.magicbeans.happygo.vo.OrderDetailVO;
+import com.magicbeans.happygo.vo.OrderListVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,6 +26,12 @@ public interface OrderMapper extends BaseMapper<Order> {
      * @return
      */
     BigDecimal countOrderPrice(@Param("orderId") String orderId);
+
+
+    List<OrderListVO> queryOrderList(Map<String,Object> map);
+
+
+    OrderDetailVO queryOrderDetail(@Param("orderId") String orderId);
 
 
 }

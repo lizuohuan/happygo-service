@@ -61,4 +61,34 @@
     </select>
 
 
+    <select id="queryOrderProduct" resultMap="IncludeProduct">
+        SELECT
+            op.*,
+            p.price AS price,
+            p.`name` AS productName,
+            p.coverImg AS productCover,
+            p.id AS p_id,
+            p.`name` AS p_name,
+            p.number AS p_number,
+            p.`describe` AS p_describe,
+            p.productCategoryId AS p_productCategoryId,
+            p.price AS p_price,
+            p.isPromotion AS p_isPromotion,
+            p.promotionPrice AS p_promotionPrice,
+            p.isIntegral AS p_isIntegral,
+            p.integral AS p_integral,
+            p.isHot AS p_isHot,
+            p.coverImg AS p_coverImg,
+            p.imgJsonAryStr AS p_imgJsonAryStr,
+            p.create_time AS p_create_time,
+            p.update_time AS p_update_time
+        FROM
+            t_order_product op,
+            t_product p
+        WHERE
+            op.orderId = #{orderId}
+            AND op.productId = p.id
+    </select>
+
+
 </mapper>

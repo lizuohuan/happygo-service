@@ -5,6 +5,7 @@ import com.magicbeans.happygo.entity.Order;
 import com.magicbeans.happygo.entity.OrderProduct;
 import com.magicbeans.happygo.entity.ShopCar;
 import com.magicbeans.happygo.exception.InterfaceCommonException;
+import com.magicbeans.happygo.mapper.AddressMapper;
 import com.magicbeans.happygo.mapper.OrderMapper;
 import com.magicbeans.happygo.mapper.OrderProductMapper;
 import com.magicbeans.happygo.mapper.ShopCarMapper;
@@ -12,6 +13,7 @@ import com.magicbeans.happygo.service.IOrderService;
 import com.magicbeans.base.BaseServiceImp;
 import com.magicbeans.happygo.util.CommonUtil;
 import com.magicbeans.happygo.util.StatusConstant;
+import com.magicbeans.happygo.vo.OrderDetailVO;
 import com.magicbeans.happygo.vo.OrderListVO;
 import net.sf.json.JSONObject;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -41,6 +44,8 @@ public class OrderServiceImpl extends BaseServiceImp<OrderMapper, Order> impleme
     private OrderProductMapper orderProductMapper;
     @Resource
     private ShopCarMapper shopCarMapper;
+    @Resource
+    private AddressMapper addressMapper;
 
     @Override
     public void addOrder(Order order, List<String> shopCarIdList) {
@@ -140,7 +145,55 @@ public class OrderServiceImpl extends BaseServiceImp<OrderMapper, Order> impleme
 
     @Override
     public List<OrderListVO> getOrderList(String userId, Integer status, Integer pageNO, Integer pageSize) {
-        return null;
+        Map<String,Object> map = new HashMap<>();
+        map.put("userId",userId);
+        map.put("status",status);
+        map.put("limit",(pageNO - 1) * pageSize);
+        map.put("limitSize",pageSize);
+        List<OrderListVO> voList = orderMapper.queryOrderList(map);
+        if(null != voList && voList.size() > 0){
+            for (OrderListVO order : voList) {
+                if(StatusConstant.ORDER_WAITING_PAY.equals(order.getStatus())){
+                    // 未支付的订单，数据读取实时数据
+                    BigDecimal price = new BigDecimal(0.0);
+                    if(null != order.getProducts()){
+                        for (OrderProduct orderProduct : order.getProducts()) {
+                            orderProduct.setPrice(1 == orderProduct.getProduct().getIsPromotion() ?
+                                    orderProduct.getProduct().getPromotionPrice() : orderProduct.getProduct().getPrice());
+                            orderProduct.setProductCover(orderProduct.getProduct().getCoverImg());
+                            orderProduct.setProductName(orderProduct.getProduct().getName());
+                            price.add(orderProduct.getPrice().multiply(new BigDecimal(orderProduct.getNumber().toString())));
+                        }
+                    }
+                    order.setPrice(price);
+                }
+            }
+        }
+        return voList;
+    }
+
+    @Override
+    public OrderDetailVO getOrderById(String orderId) {
+        OrderDetailVO detail = orderMapper.queryOrderDetail(orderId);
+        if(null == detail){
+            throw new InterfaceCommonException(StatusConstant.OBJECT_NOT_EXIST,"订单不存在");
+        }
+        List<OrderProduct> orderProductList = orderProductMapper.queryOrderProduct(orderId);
+        if(null != orderProductList && orderProductList.size() > 0){
+            if(StatusConstant.ORDER_WAITING_PAY.equals(detail.getStatus())){
+                BigDecimal price = new BigDecimal(0.0);
+                for (OrderProduct product : orderProductList) {
+                    product.setProductName(product.getProduct().getName());
+                    product.setProductCover(product.getProduct().getCoverImg());
+                    product.setPrice(1 == product.getProduct().getIsPromotion() ?
+                        product.getProduct().getPromotionPrice() : product.getProduct().getPrice());
+                    price.add(product.getPrice().multiply(new BigDecimal(product.getNumber().toString())));
+                }
+                detail.setPrice(price);
+            }
+            detail.setOrderProducts(orderProductList);
+        }
+        return detail;
     }
 
     /**

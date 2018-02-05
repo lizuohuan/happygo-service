@@ -1,5 +1,6 @@
 package com.magicbeans.happygo.service.impl;
 
+import com.magicbeans.base.Pages;
 import com.magicbeans.happygo.entity.Order;
 import com.magicbeans.happygo.entity.OrderProduct;
 import com.magicbeans.happygo.entity.ShopCar;
@@ -20,6 +21,7 @@ import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -138,6 +140,17 @@ public class OrderServiceImpl extends BaseServiceImp<OrderMapper, Order> impleme
 
     @Override
     public List<OrderListVO> getOrderList(String userId, Integer status, Integer pageNO, Integer pageSize) {
+        return null;
+    }
+
+    /**
+     * 后台订单列表
+     * @param pages
+     * @param map
+     * @return
+     */
+    @Override
+    public Pages<Order> list(Pages pages, Map<String, Object> map) {
         return null;
     }
 }

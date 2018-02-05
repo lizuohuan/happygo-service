@@ -79,4 +79,13 @@
     </select>
 
 
+    <select id="queryAllUser" resultMap="BaseUser">
+        SELECT
+            u.id,
+            IFNULL((SELECT SUM(tus.score) FROM t_user_score tus WHERE tus.userId = u.id),0) AS score
+        FROM
+            t_users u
+    </select>
+
+
 </mapper>

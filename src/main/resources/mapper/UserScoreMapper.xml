@@ -4,21 +4,29 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.magicbeans.happygo.entity.UserScore">
-    <result column="id" property="id" />
-        <result column="orderId" property="orderId" />
-        <result column="isAdd" property="isAdd" />
-        <result column="userId" property="userId" />
-        <result column="score" property="score" />
-        <result column="productName" property="productName" />
-        <result column="productCoverImg" property="productCoverImg" />
-        <result column="number" property="number" />
-        <result column="price" property="price" />
+        <result column="id" property="id"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="orderId" property="orderId"/>
+        <result column="isAdd" property="isAdd"/>
+        <result column="userId" property="userId"/>
+        <result column="score" property="score"/>
+        <result column="productName" property="productName"/>
+        <result column="productCoverImg" property="productCoverImg"/>
+        <result column="number" property="number"/>
+        <result column="price" property="price"/>
+        <result column="isValid" property="isValid"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
     id,
-        orderId, isAdd, userId, score, productName, productCoverImg, number, price
+        orderId, isAdd, userId, score, productName, productCoverImg, `number`, price
     </sql>
+
+
+    <select id="queryUserScoreByOrder" resultMap="BaseResultMap">
+        SELECT id,isValid,orderId FROM  t_user_score WHERE  orderId = #{orderId}
+    </select>
 
 </mapper>

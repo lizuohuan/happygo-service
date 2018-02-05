@@ -17,6 +17,7 @@
         <result column="isIntegral" property="isIntegral"/>
         <result column="integral" property="integral"/>
         <result column="isHot" property="isHot"/>
+        <result column="ticket" property="ticket"/>
         <result column="create_time" property="create_time"/>
         <result column="update_time" property="update_time"/>
         <!-- 业务字段 -->

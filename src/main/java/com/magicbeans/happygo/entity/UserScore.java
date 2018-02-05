@@ -51,6 +51,16 @@ public class UserScore extends BaseEntity<UserScore> {
      */
     private BigDecimal price;
 
+    /**
+     * 产品ID
+     */
+    private String productId;
+
+    /**
+     * 是否有效
+     */
+    private Integer isValid;
+
 
     public String getOrderId() {
         return orderId;
@@ -133,5 +143,33 @@ public class UserScore extends BaseEntity<UserScore> {
         ", number=" + number +
         ", price=" + price +
         "}";
+    }
+
+    /**
+     * 获取 产品ID
+     */
+    public String getProductId() {
+        return this.productId;
+    }
+
+    /**
+     * 设置 产品ID
+     */
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    /**
+     * 获取 是否有效
+     */
+    public Integer getIsValid() {
+        return this.isValid;
+    }
+
+    /**
+     * 设置 是否有效
+     */
+    public void setIsValid(Integer isValid) {
+        this.isValid = isValid;
     }
 }

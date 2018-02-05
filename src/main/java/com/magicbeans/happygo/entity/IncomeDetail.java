@@ -61,6 +61,11 @@ public class IncomeDetail extends BaseEntity<IncomeDetail> {
      */
     private String productId;
 
+    /**
+     * 是否有效
+     */
+    private Integer isValid;
+
 
     public String getFromUserId() {
         return fromUserId;
@@ -161,5 +166,19 @@ public class IncomeDetail extends BaseEntity<IncomeDetail> {
         ", orderId=" + orderId +
         ", productId=" + productId +
         "}";
+    }
+
+    /**
+     * 获取 是否有效
+     */
+    public Integer getIsValid() {
+        return this.isValid;
+    }
+
+    /**
+     * 设置 是否有效
+     */
+    public void setIsValid(Integer isValid) {
+        this.isValid = isValid;
     }
 }

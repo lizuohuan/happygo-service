@@ -53,6 +53,17 @@ public class OrderProduct extends BaseEntity<OrderProduct> {
      */
     private String productDetail;
 
+    /** 是否为积分商品 */
+    private Integer isIntegral;
+
+    /** 积分商品 可兑换的积分 */
+    private Integer integral;
+
+    /** 积分商品 可兑换的欢喜券 */
+    private BigDecimal ticket;
+
+
+
     // 业务字段
 
     @TableField(exist=false)
@@ -140,5 +151,31 @@ public class OrderProduct extends BaseEntity<OrderProduct> {
     public OrderProduct setProduct(Product product) {
         this.product = product;
         return this;
+    }
+
+    public Integer getIsIntegral() {
+        return this.isIntegral;
+    }
+
+    public void setIsIntegral(Integer isIntegral) {
+        this.isIntegral = isIntegral;
+    }
+
+    public Integer getIntegral() {
+        return this.integral;
+    }
+
+    public void setIntegral(Integer integral) {
+        this.integral = integral;
+    }
+
+    /** 获取 积分商品 可兑换的欢喜券 */
+    public BigDecimal getTicket() {
+        return this.ticket;
+    }
+
+    /** 设置 积分商品 可兑换的欢喜券 */
+    public void setTicket(BigDecimal ticket) {
+        this.ticket = ticket;
     }
 }

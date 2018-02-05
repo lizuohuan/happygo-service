@@ -4,11 +4,15 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.magicbeans.happygo.entity.SystemConfig">
-    <result column="id" property="id" />
-    <result column="create_time" property="createTime" />
-    <result column="update_time" property="updateTime" />
-        <result column="parities" property="parities" />
-        <result column="withdrawalProportion" property="withdrawalProportion" />
+        <result column="id" property="id"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="parities" property="parities"/>
+        <result column="withdrawalProportion" property="withdrawalProportion"/>
+        <result column="threeRatio" property="threeRatio"/>
+        <result column="twoRatio" property="twoRatio"/>
+        <result column="oneRatio" property="oneRatio"/>
+        <result column="oneTicketRatio" property="oneTicketRatio"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->

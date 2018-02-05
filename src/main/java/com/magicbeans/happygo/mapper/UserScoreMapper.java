@@ -2,6 +2,9 @@ package com.magicbeans.happygo.mapper;
 
 import com.magicbeans.happygo.entity.UserScore;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -12,5 +15,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * @since 2018-02-02
  */
 public interface UserScoreMapper extends BaseMapper<UserScore> {
+
+    List<UserScore> queryUserScoreByOrder(@Param("orderId") String orderId);
 
 }

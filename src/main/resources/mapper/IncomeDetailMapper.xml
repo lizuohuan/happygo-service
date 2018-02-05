@@ -17,6 +17,7 @@
         <result column="bigDecimal" property="bigDecimal"/>
         <result column="orderId" property="orderId"/>
         <result column="productId" property="productId"/>
+        <result column="isValid" property="isValid"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
@@ -37,6 +38,7 @@
             tid.fromUserId = #{fromUserId}
         AND tid.toUserId = #{toUserId}
         AND tid.`type` NOT IN (2)
+        AND tid.isValid = 1
         ORDER BY
             tid.create_time DESC
         <if test="limit and limitSize != null">
@@ -50,15 +52,21 @@
             IFNULL(SUM(IFNULL(tid.bigDecimal,0)),0) AS balance,
             IFNULL((SELECT SUM(IFNULL(tt.bigDecimal,0))
             FROM t_income_detail tt WHERE DATE_FORMAT(tt.create_time,'%y-%m-%d') = DATE_FORMAT(NOW(),'%y-%m-%d')
-            AND tt.type = 1 AND tt.toUserId = tid.toUserId),0) AS todayIncome,
-            IFNULL((SELECT SUM(IFNULL(tt.bigDecimal,0)) FROM t_income_detail tt WHERE tt.type IN (0,1) AND tt.toUserId = tid.toUserId),0) AS totalIncome,
+            AND tt.type = 1 AND tt.isValid = 1 AND tt.toUserId = tid.toUserId),0) AS todayIncome,
+            IFNULL((SELECT SUM(IFNULL(tt.bigDecimal,0)) FROM t_income_detail tt WHERE tt.type IN (0,1) AND tt.isValid = 1 AND tt.toUserId = tid.toUserId),0) AS totalIncome,
             IFNULL((SELECT SUM(IFNULL(tt.bigDecimal,0)) FROM t_income_detail tt WHERE tt.type IN (0)
-                            AND tt.toUserId = tid.toUserId AND tt.toUserId != tt.fromUserId),0) AS distributionIncome,
-            IFNULL((SELECT SUM(score) FROM t_user_score us WHERE us.userId = tid.toUserId),0) AS totalScore
+                            AND tt.toUserId = tid.toUserId AND tt.isValid = 1 AND tt.toUserId != tt.fromUserId),0) AS distributionIncome,
+            IFNULL((SELECT SUM(score) FROM t_user_score us WHERE us.userId = tid.toUserId AND us.isValid = 1),0) AS totalScore
         FROM
             t_income_detail tid
         WHERE
             tid.toUserId = #{toUserId}
+            AND tid.isValid = 1
+    </select>
+
+
+    <select id="queryIncomeDetailByOrder" resultMap="BaseResultMap">
+        SELECT id,isValid,orderId FROM t_income_detail WHERE  orderId = #{orderId}
     </select>
 
 </mapper>

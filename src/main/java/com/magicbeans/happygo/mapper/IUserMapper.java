@@ -36,4 +36,13 @@ public interface IUserMapper extends BaseMapper<User> {
 
 
     User queryUserByShareCode(@Param("shareCode") String shareCode);
+
+
+    /**
+     * 查询所有用户的当前积分 用于兑换欢喜券
+     * 用户查询部分字段
+     * @return
+     */
+    List<User> queryAllUser();
+
 }

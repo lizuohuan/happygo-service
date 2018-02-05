@@ -2,6 +2,7 @@ package com.magicbeans.happygo.service;
 
 import com.magicbeans.happygo.entity.Order;
 import com.magicbeans.base.BaseService;
+import com.magicbeans.happygo.entity.SystemConfig;
 import com.magicbeans.happygo.vo.OrderDetailVO;
 import com.magicbeans.happygo.vo.OrderListVO;
 
@@ -59,8 +60,9 @@ public interface IOrderService extends BaseService<Order> {
      * @param orderId 订单ID
      * @param currentUserId 当前操作者ID
      * @param status 确认支付 更改值为 1，如果不确认 则更改为 2
+     * @param config 系统配置信息
      */
-    void confirmUnderOrder(String orderId,String currentUserId,Integer status);
+    void confirmUnderOrder(String orderId, String currentUserId, Integer status, SystemConfig config);
 
 
     /**
@@ -80,5 +82,12 @@ public interface IOrderService extends BaseService<Order> {
      * @return 订单
      */
     OrderDetailVO getOrderById(String orderId);
+
+
+    /**
+     * 确认订单退款申请
+     * @param orderId 订单ID
+     */
+    void refundOrder(String orderId) throws Exception;
 
 }

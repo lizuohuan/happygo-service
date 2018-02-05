@@ -40,4 +40,6 @@ public interface IncomeDetailMapper extends BaseMapper<IncomeDetail> {
     Map<String,Object>  countIncome(@Param("toUserId") String toUserId);
 
 
+    List<IncomeDetail> queryIncomeDetailByOrder(@Param("orderId") String orderId);
+
 }

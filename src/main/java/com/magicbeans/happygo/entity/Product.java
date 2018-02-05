@@ -46,6 +46,9 @@ public class Product extends BaseEntity<Product> {
     /** 当商品为积分商品时，配置积分 */
     private Integer integral;
 
+    /** 为积分商品时，该商品兑换的券 */
+    private BigDecimal ticket;
+
     /** 是否为热门商品 0：否 1：是 */
     private Integer isHot;
 
@@ -54,6 +57,7 @@ public class Product extends BaseEntity<Product> {
 
     /** 图片json集合 字符串类型 */
     private String imgJsonAryStr;
+
 
 
     /********************  业务字段  ***********************/
@@ -208,5 +212,15 @@ public class Product extends BaseEntity<Product> {
     /** 设置 图片List集合 */
     public void setImgList(List<String> imgList) {
         this.imgList = imgList;
+    }
+
+    /** 获取 为积分商品时，该商品兑换的券 */
+    public BigDecimal getTicket() {
+        return this.ticket;
+    }
+
+    /** 设置 为积分商品时，该商品兑换的券 */
+    public void setTicket(BigDecimal ticket) {
+        this.ticket = ticket;
     }
 }

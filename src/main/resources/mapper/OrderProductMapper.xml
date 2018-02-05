@@ -14,6 +14,9 @@
         <result column="productName" property="productName"/>
         <result column="productCover" property="productCover"/>
         <result column="productDetail" property="productDetail"/>
+        <result column="integral" property="integral"/>
+        <result column="isIntegral" property="isIntegral"/>
+        <result column="ticket" property="ticket"/>
     </resultMap>
 
     <resultMap id="IncludeProduct" type="com.magicbeans.happygo.entity.OrderProduct" extends="BaseResultMap">

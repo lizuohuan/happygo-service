@@ -11,6 +11,7 @@ import com.magicbeans.happygo.service.IOrderService;
 import com.magicbeans.base.BaseServiceImp;
 import com.magicbeans.happygo.util.CommonUtil;
 import com.magicbeans.happygo.util.StatusConstant;
+import com.magicbeans.happygo.vo.OrderListVO;
 import net.sf.json.JSONObject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -133,5 +134,10 @@ public class OrderServiceImpl extends BaseServiceImp<OrderMapper, Order> impleme
         t.setAdminOk(status);
         t.setAdminId(currentUserId);
         orderMapper.updateById(t);
+    }
+
+    @Override
+    public List<OrderListVO> getOrderList(String userId, Integer status, Integer pageNO, Integer pageSize) {
+        return null;
     }
 }

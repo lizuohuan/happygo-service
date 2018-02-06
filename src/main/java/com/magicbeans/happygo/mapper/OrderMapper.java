@@ -1,5 +1,6 @@
 package com.magicbeans.happygo.mapper;
 
+import com.magicbeans.happygo.entity.Banner;
 import com.magicbeans.happygo.entity.Order;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.magicbeans.happygo.vo.OrderDetailVO;
@@ -33,5 +34,19 @@ public interface OrderMapper extends BaseMapper<Order> {
 
     OrderDetailVO queryOrderDetail(@Param("orderId") String orderId);
 
+
+    /**
+     * 订单集合
+     * @param map
+     * @return
+     */
+    List<Banner> list(Map<String ,Object> map);
+
+    /**
+     * 订单集合 条数
+     * @param map
+     * @return
+     */
+    int listCount(Map<String ,Object> map);
 
 }

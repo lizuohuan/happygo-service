@@ -77,7 +77,7 @@ public class Order extends BaseEntity<Order> {
 
     /** 购买人 */
     @TableField(exist = false)
-    private String userName;
+    private String nickName;
 
     /** 收货地址 */
     @TableField(exist = false)
@@ -85,7 +85,7 @@ public class Order extends BaseEntity<Order> {
 
     /** 后台操作人员 */
     @TableField(exist = false)
-    private String adminName;
+    private String username;
 
 
     public String getExpressNumber() {
@@ -209,14 +209,15 @@ public class Order extends BaseEntity<Order> {
         this.bankImg = bankImg;
     }
 
+
     /** 获取 购买人 */
-    public String getUserName() {
-        return this.userName;
+    public String getNickName() {
+        return this.nickName;
     }
 
     /** 设置 购买人 */
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
     /** 获取 收货地址 */
@@ -230,12 +231,12 @@ public class Order extends BaseEntity<Order> {
     }
 
     /** 获取 后台操作人员 */
-    public String getAdminName() {
-        return this.adminName;
+    public String getUsername() {
+        return this.username;
     }
 
     /** 设置 后台操作人员 */
-    public void setAdminName(String adminName) {
-        this.adminName = adminName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

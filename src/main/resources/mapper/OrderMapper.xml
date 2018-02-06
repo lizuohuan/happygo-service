@@ -19,6 +19,9 @@
         <result column="adminOk" property="adminOk" />
         <result column="adminId" property="adminId" />
         <result column="expressNumber" property="expressNumber" />
+        <result column="nickName" property="nickName" />
+        <result column="username" property="username" />
+        <result column="address" property="address" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
@@ -96,5 +99,89 @@
         WHERE
             o.id = #{orderId}
     </select>
+
+
+    <select id="list" resultMap="BaseResultMap" parameterType="map">
+        SELECT
+        o.*,u.nickName,a.username,addr.detailAddress AS address
+        FROM t_users u,t_address addr,t_order o
+        LEFT JOIN admin a ON o.adminId = a.id
+        WHERE 1 = 1
+        <if test="orderNumber != null and orderNumber != ''">
+            AND o.orderNumber like '%${orderNumber}%'
+        </if>
+        <if test="expressNumber != null and expressNumber != ''">
+            AND o.expressNumber like '%${expressNumber}%'
+        </if>
+        <if test="nickName != null and nickName != ''">
+            AND u.nickName like '%${nickName}%'
+        </if>
+        <if test="username != null and username != ''">
+            AND a.username like '%${username}%'
+        </if>
+        <if test="status != null">
+            AND o.status = #{status}
+        </if>
+        <if test="payMethod != null">
+            AND o.payMethod = #{payMethod}
+        </if>
+        <if test="userIsValid != null">
+            AND o.userIsValid = #{userIsValid}
+        </if>
+        <if test="adminOk != null">
+            AND o.adminOk = #{adminOk}
+        </if>
+        <if test="createTimeStart != null">
+            AND o.create_time <![CDATA[ >= ]]> #{createTimeStart}
+        </if>
+        <if test="createTimeEnd != null">
+            AND o.create_time <![CDATA[ <= ]]> #{createTimeEnd}
+        </if>
+        ORDER BY
+        o.create_time DESC
+        <if test="pages != null">
+            limit #{pages.current}, #{pages.size}
+        </if>
+    </select>
+
+
+    <select id="listCount" resultType="java.lang.Integer" parameterType="map">
+        SELECT
+        COUNT(0)
+        FROM t_users u,t_order o
+        LEFT JOIN admin a ON o.adminId = a.id
+        WHERE 1 = 1
+        <if test="orderNumber != null and orderNumber != ''">
+            AND o.orderNumber like '%${orderNumber}%'
+        </if>
+        <if test="expressNumber != null and expressNumber != ''">
+            AND o.expressNumber like '%${expressNumber}%'
+        </if>
+        <if test="nickName != null and nickName != ''">
+            AND u.nickName like '%${nickName}%'
+        </if>
+        <if test="username != null and username != ''">
+            AND a.username like '%${username}%'
+        </if>
+        <if test="status != null">
+            AND o.status = #{status}
+        </if>
+        <if test="payMethod != null">
+            AND o.payMethod = #{payMethod}
+        </if>
+        <if test="userIsValid != null">
+            AND o.userIsValid = #{userIsValid}
+        </if>
+        <if test="adminOk != null">
+            AND o.adminOk = #{adminOk}
+        </if>
+        <if test="createTimeStart != null">
+            AND o.create_time <![CDATA[ >= ]]> #{createTimeStart}
+        </if>
+        <if test="createTimeEnd != null">
+            AND o.create_time <![CDATA[ <= ]]> #{createTimeEnd}
+        </if>
+    </select>
+
 
 </mapper>

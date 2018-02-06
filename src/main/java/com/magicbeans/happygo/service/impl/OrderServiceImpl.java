@@ -363,7 +363,13 @@ public class OrderServiceImpl extends BaseServiceImp<OrderMapper, Order> impleme
      */
     @Override
     public Pages<Order> list(Pages pages, Map<String, Object> map) {
-        return null;
+        int count = orderMapper.listCount(map);
+        pages.setTotal(count);
+        if (count > 0) {
+            map.put("pages",pages);
+            pages.setRecords(orderMapper.list(map));
+        }
+        return pages;
     }
 
     @Override

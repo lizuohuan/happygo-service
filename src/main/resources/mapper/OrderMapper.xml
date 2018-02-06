@@ -55,7 +55,7 @@
         <association property="products" column="orderId" select="com.magicbeans.happygo.mapper.OrderProductMapper.queryOrderProduct"/>
     </resultMap>
 
-    <select id="queryOrderList" resultType="com.magicbeans.happygo.vo.OrderDetailVO">
+    <select id="queryOrderList" resultMap="OrderListVO">
         SELECT
             o.id AS orderId,
             o.orderNumber,

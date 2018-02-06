@@ -321,7 +321,7 @@ public class OrderServiceImpl extends BaseServiceImp<OrderMapper, Order> impleme
                                     orderProduct.getProduct().getPromotionPrice() : orderProduct.getProduct().getPrice());
                             orderProduct.setProductCover(orderProduct.getProduct().getCoverImg());
                             orderProduct.setProductName(orderProduct.getProduct().getName());
-                            price.add(orderProduct.getPrice().multiply(new BigDecimal(orderProduct.getNumber().toString())));
+                            price = price.add(orderProduct.getPrice().multiply(new BigDecimal(orderProduct.getNumber().toString())));
                         }
                     }
                     order.setPrice(price);

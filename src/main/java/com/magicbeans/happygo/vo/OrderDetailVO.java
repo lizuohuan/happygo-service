@@ -41,6 +41,12 @@ public class OrderDetailVO {
     /** 运费 */
     private BigDecimal freight;
 
+    private Integer payMethodId;
+
+    private String bankImg;
+
+    private Integer adminOk;
+
     /** 商品 */
     private List<OrderProduct> orderProducts;
 
@@ -131,5 +137,29 @@ public class OrderDetailVO {
 
     public void setOrderProducts(List<OrderProduct> orderProducts) {
         this.orderProducts = orderProducts;
+    }
+
+    public Integer getPayMethodId() {
+        return this.payMethodId;
+    }
+
+    public void setPayMethodId(Integer payMethodId) {
+        this.payMethodId = payMethodId;
+    }
+
+    public String getBankImg() {
+        return this.bankImg;
+    }
+
+    public void setBankImg(String bankImg) {
+        this.bankImg = bankImg;
+    }
+
+    public Integer getAdminOk() {
+        return this.adminOk;
+    }
+
+    public void setAdminOk(Integer adminOk) {
+        this.adminOk = adminOk;
     }
 }

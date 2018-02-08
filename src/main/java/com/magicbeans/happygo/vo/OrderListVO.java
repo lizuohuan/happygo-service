@@ -25,6 +25,12 @@ public class OrderListVO {
     /** 订单运费 */
     private BigDecimal freight;
 
+    private Integer payMethod;
+
+    private String bankImg;
+
+    private Integer adminOk;
+
 
     /** 产品 */
     private List<OrderProduct> products;
@@ -81,5 +87,29 @@ public class OrderListVO {
     public OrderListVO setProducts(List<OrderProduct> products) {
         this.products = products;
         return this;
+    }
+
+    public Integer getPayMethod() {
+        return this.payMethod;
+    }
+
+    public void setPayMethod(Integer payMethod) {
+        this.payMethod = payMethod;
+    }
+
+    public String getBankImg() {
+        return this.bankImg;
+    }
+
+    public void setBankImg(String bankImg) {
+        this.bankImg = bankImg;
+    }
+
+    public Integer getAdminOk() {
+        return this.adminOk;
+    }
+
+    public void setAdminOk(Integer adminOk) {
+        this.adminOk = adminOk;
     }
 }

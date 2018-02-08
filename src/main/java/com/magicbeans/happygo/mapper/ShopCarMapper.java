@@ -27,7 +27,7 @@ public interface ShopCarMapper extends BaseMapper<ShopCar> {
      * @param userId 用户
      * @return 购物车列表
      */
-    List<ShopCarVO> queryShopCar(@Param("userId") String userId);
+    List<ShopCarVO> queryShopCar(@Param("userId") String userId,@Param("carIds") List<String> carIds);
 
 
     /**

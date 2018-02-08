@@ -52,16 +52,22 @@
         <result column="status" property="status"/>
         <result column="price" property="price"/>
         <result column="freight" property="freight"/>
+        <result column="adminOk" property="adminOk"/>
+        <result column="payMethod" property="payMethod"/>
+        <result column="bankImg" property="bankImg"/>
         <association property="products" column="orderId" select="com.magicbeans.happygo.mapper.OrderProductMapper.queryOrderProduct"/>
     </resultMap>
 
-    <select id="queryOrderList" resultType="com.magicbeans.happygo.vo.OrderDetailVO">
+    <select id="queryOrderList" resultMap="OrderListVO">
         SELECT
             o.id AS orderId,
             o.orderNumber,
             o.`status`,
             o.price,
-            o.freight
+            o.freight,
+            o.payMethod,
+            o.adminOk,
+            o.bankImg
         FROM
             t_order o
         WHERE
@@ -91,7 +97,10 @@
                                              ELSE '无' END AS payMethod,
             CONCAT(cc.mergerName,ta.detailAddress) AS `address`,
             ta.contacts AS consignee,
-            ta.phone AS phone
+            ta.phone AS phone,
+            o.payMethod AS payMethodId,
+            o.adminOk,
+            o.bankImg
         FROM
             t_order o
         LEFT JOIN t_address ta ON o.addressId = ta.id

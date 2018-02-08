@@ -82,7 +82,7 @@ public class OrderServiceImpl extends BaseServiceImp<OrderMapper, Order> impleme
         BigDecimal count = new BigDecimal(0.0);
         if (null != orderProductList && orderProductList.size() > 0){
             for (OrderProduct orderProduct : orderProductList) {
-                count.add(orderProduct.getProduct().getPrice().multiply(new BigDecimal(orderProduct.getNumber().toString())));
+                count = count.add(orderProduct.getProduct().getPrice().multiply(new BigDecimal(orderProduct.getNumber().toString())));
                 orderProduct.setPrice(orderProduct.getProduct().getPrice());
                 orderProduct.setProductName(orderProduct.getProduct().getName());
                 orderProduct.setProductCover(orderProduct.getProduct().getCoverImg());
@@ -312,7 +312,7 @@ public class OrderServiceImpl extends BaseServiceImp<OrderMapper, Order> impleme
         List<OrderListVO> voList = orderMapper.queryOrderList(map);
         if(null != voList && voList.size() > 0){
             for (OrderListVO order : voList) {
-                if(StatusConstant.ORDER_WAITING_PAY.equals(order.getStatus())){
+                if(StatusConstant.ORDER_WAITING_PAY.equals(order.getStatus()) || StatusConstant.ORDER_CANCEL.equals(order.getStatus())){
                     // 未支付的订单，数据读取实时数据
                     BigDecimal price = new BigDecimal(0.0);
                     if(null != order.getProducts()){
@@ -321,7 +321,7 @@ public class OrderServiceImpl extends BaseServiceImp<OrderMapper, Order> impleme
                                     orderProduct.getProduct().getPromotionPrice() : orderProduct.getProduct().getPrice());
                             orderProduct.setProductCover(orderProduct.getProduct().getCoverImg());
                             orderProduct.setProductName(orderProduct.getProduct().getName());
-                            price.add(orderProduct.getPrice().multiply(new BigDecimal(orderProduct.getNumber().toString())));
+                            price = price.add(orderProduct.getPrice().multiply(new BigDecimal(orderProduct.getNumber().toString())));
                         }
                     }
                     order.setPrice(price);
@@ -339,14 +339,14 @@ public class OrderServiceImpl extends BaseServiceImp<OrderMapper, Order> impleme
         }
         List<OrderProduct> orderProductList = orderProductMapper.queryOrderProduct(orderId);
         if(null != orderProductList && orderProductList.size() > 0){
-            if(StatusConstant.ORDER_WAITING_PAY.equals(detail.getStatus())){
+            if(StatusConstant.ORDER_WAITING_PAY.equals(detail.getStatus()) || StatusConstant.ORDER_CANCEL.equals(detail.getStatus())){
                 BigDecimal price = new BigDecimal(0.0);
                 for (OrderProduct product : orderProductList) {
                     product.setProductName(product.getProduct().getName());
                     product.setProductCover(product.getProduct().getCoverImg());
                     product.setPrice(1 == product.getProduct().getIsPromotion() ?
                         product.getProduct().getPromotionPrice() : product.getProduct().getPrice());
-                    price.add(product.getPrice().multiply(new BigDecimal(product.getNumber().toString())));
+                    price = price.add(product.getPrice().multiply(new BigDecimal(product.getNumber().toString())));
                 }
                 detail.setPrice(price);
             }

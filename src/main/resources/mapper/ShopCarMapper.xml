@@ -43,6 +43,12 @@
         WHERE
             sc.productId = p.id
             AND sc.userId = #{userId}
+            <if test="carIds != null">
+                AND sc.id IN
+                <foreach collection="carIds" index="index" item="id" open="(" close=")" separator=",">
+                    #{id}
+                </foreach>
+            </if>
     </select>
 
     <select id="queryShopCarByUser" resultMap="BaseResultMap">

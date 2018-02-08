@@ -22,9 +22,10 @@ public interface IShopCarService extends BaseService<ShopCar> {
     /**
      * 获取用户的购物车
      * @param userId 用户ID
+     * @param shopCardIds 如果不为空，则按ID查询集合
      * @return 购物车列表
      */
-    List<ShopCarVO> getShopCar(String userId);
+    List<ShopCarVO> getShopCar(String userId,String shopCardIds);
 
 
     /**

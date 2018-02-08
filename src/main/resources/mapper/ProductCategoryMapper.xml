@@ -7,8 +7,12 @@
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="parentId" property="parentId"/>
+        <result column="icon" property="icon"/>
         <result column="create_time" property="create_time"/>
         <result column="update_time" property="update_time"/>
     </resultMap>
+
+
+
 
 </mapper>

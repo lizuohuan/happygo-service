@@ -25,7 +25,8 @@ public interface ProductMapper extends BaseMapper<Product> {
      * @return 商品明细
      */
     List<ProductVO> searchProduct(@Param("productName") String productName,
-                                  @Param("limit") Integer limit, @Param("limitSize") Integer limitSize);
+                                  @Param("limit") Integer limit, @Param("limitSize") Integer limitSize,
+                                  @Param("categoryId") String categoryId);
 
     /**
      * 获取商品列表

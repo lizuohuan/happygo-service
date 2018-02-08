@@ -68,6 +68,9 @@
             t_product p
         WHERE
           1 = 1
+          <if test="categoryId != null">
+              AND p.productCategoryId = #{categoryId}
+          </if>
           <if test="productName != null">
               AND p.`name` LIKE '%${productName}%'
           </if>

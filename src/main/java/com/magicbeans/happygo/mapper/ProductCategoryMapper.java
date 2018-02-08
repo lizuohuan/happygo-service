@@ -15,6 +15,4 @@ import java.util.List;
 public interface ProductCategoryMapper extends BaseMapper<ProductCategory> {
 
 
-    List<ProductCategory> queryAllCategory();
-
 }

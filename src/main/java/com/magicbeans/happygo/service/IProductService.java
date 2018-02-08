@@ -21,7 +21,7 @@ public interface IProductService extends BaseService<Product> {
      * @param pageSize 分页参数
      * @return 商品明细
      */
-    List<ProductVO> searchProduct(String productName,Integer pageNO,Integer pageSize);
+    List<ProductVO> searchProduct(String productName,Integer pageNO,Integer pageSize,String categoryId);
 
     /**
      *  获取商品列表

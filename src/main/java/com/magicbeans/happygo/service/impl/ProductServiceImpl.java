@@ -24,8 +24,8 @@ public class ProductServiceImpl extends BaseServiceImp<ProductMapper,Product> im
     private ProductMapper productMapper;
 
     @Override
-    public List<ProductVO> searchProduct(String productName, Integer pageNO, Integer pageSize) {
-        return productMapper.searchProduct(productName,(pageNO - 1) * pageSize,pageSize);
+    public List<ProductVO> searchProduct(String productName, Integer pageNO, Integer pageSize,String categoryId) {
+        return productMapper.searchProduct(productName,(pageNO - 1) * pageSize,pageSize,categoryId);
     }
 
     @Override

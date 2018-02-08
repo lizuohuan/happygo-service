@@ -108,6 +108,13 @@ public class StatusConstant {
 	/** 申请退款中 */
 	public static final Integer ORDER_REFUND = 6;
 
+	/** 拒绝退款 */
+	public static final Integer ORDER_REFUSE_REFUND = 7;
+
+	/** 已退款 */
+	public static final Integer ORDER_AGREE_REFUND = 8;
+
+
 
 	// 订单支付方式
 

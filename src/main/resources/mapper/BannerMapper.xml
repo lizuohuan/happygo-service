@@ -50,7 +50,7 @@
         ORDER BY
         b.create_time DESC
         <if test="pages != null">
-            limit #{pages.current}, #{pages.size}
+            limit #{pages.pages}, #{pages.size}
         </if>
     </select>
 

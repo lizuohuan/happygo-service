@@ -41,5 +41,12 @@ public interface IUserService extends BaseService<User> {
      */
     Map<String,Object> countLastDay();
 
+    /**
+     * 后台通过/拒绝申请成为代理商
+     * @param userId 用户ID
+     * @param status 1 通过  2 拒绝通过
+     */
+    void setAgent(String userId,Integer status) throws Exception;
+
 
 }

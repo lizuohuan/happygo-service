@@ -151,7 +151,7 @@
         ORDER BY
         o.create_time DESC
         <if test="pages != null">
-            limit #{pages.pages}, #{pages.size}
+            limit #{pages.current}, #{pages.size}
         </if>
     </select>
 

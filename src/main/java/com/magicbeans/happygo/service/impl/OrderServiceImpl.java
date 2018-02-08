@@ -142,7 +142,9 @@ public class OrderServiceImpl extends BaseServiceImp<OrderMapper, Order> impleme
             throw new InterfaceCommonException(StatusConstant.Fail_CODE,"订单未上传流水明细");
         }
         Order to = new Order();
-        to.setStatus(StatusConstant.ORDER_WAITING_SEND);
+        if (status == 1) {
+            to.setStatus(StatusConstant.ORDER_WAITING_SEND);
+        }
         to.setId(orderId);
         to.setAdminOk(status);
         to.setAdminId(currentUserId);

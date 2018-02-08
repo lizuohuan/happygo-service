@@ -40,4 +40,10 @@ public class UserServiceImpl extends BaseServiceImp<IUserMapper,User> implements
     public User getUserByShareCode(String shareCode) {
         return userMapper.queryUserByShareCode(shareCode);
     }
+
+
+    @Override
+    public Map<String, Object> countLastDay() {
+        return userMapper.countLastDay();
+    }
 }

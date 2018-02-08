@@ -13,4 +13,11 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface SystemConfigMapper extends BaseMapper<SystemConfig> {
 
+
+    /**
+     * 获取最新的一条配置记录
+     * @return
+     */
+    SystemConfig querySystemConfig();
+
 }

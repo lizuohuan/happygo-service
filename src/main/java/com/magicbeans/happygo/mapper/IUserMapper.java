@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.CacheNamespaceRef;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 用户管理 Mapper
@@ -44,5 +45,12 @@ public interface IUserMapper extends BaseMapper<User> {
      * @return
      */
     List<User> queryAllUser();
+
+    /**
+     * 统计昨日数据
+     * 积分、欢喜券、单元总量、转化率
+     * @return
+     */
+    Map<String,Object> countLastDay();
 
 }

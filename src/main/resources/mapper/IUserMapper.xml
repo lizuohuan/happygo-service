@@ -90,4 +90,43 @@
     </select>
 
 
+    <select id="countLastDay" resultType="map">
+        SELECT
+
+            (
+                SELECT
+                    IFNULL(SUM(IFNULL(tid.bigDecimal,0)),0)
+                FROM
+                    t_income_detail tid
+                WHERE
+                    DATE_FORMAT(tid.create_time, '%y-%m-%d') = DATE_FORMAT(
+                        (
+                            SELECT
+                                DATE_SUB(curdate(), INTERVAL 1 DAY)
+                        ),
+                        '%y-%m-%d'
+                    )
+                AND tid.type IN (0,1)
+                AND tid.isValid = 1
+            ) AS bigDecimal,
+
+            (
+                SELECT
+                    IFNULL(SUM(IFNULL(tuc.score, 0)), 0) AS score
+                FROM
+                    t_user_score tuc
+                WHERE
+                    DATE_FORMAT(tuc.create_time, '%y-%m-%d') = DATE_FORMAT(
+                        (
+                            SELECT
+                                DATE_SUB(curdate(), INTERVAL 1 DAY)
+                        ),
+                        '%y-%m-%d'
+                    )
+                AND tuc.isAdd = 1
+                AND tuc.isValid = 1
+            ) AS score
+    </select>
+
+
 </mapper>

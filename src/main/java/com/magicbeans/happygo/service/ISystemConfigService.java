@@ -14,5 +14,16 @@ import com.magicbeans.base.BaseService;
 public interface ISystemConfigService extends BaseService<SystemConfig> {
 
 
+    /**
+     * 获取系统配置
+     * @return
+     */
+    SystemConfig getSystemConfig();
+
+    /**
+     * 提交更新系统配置
+     * @param systemConfig
+     */
+    void updateSystemConfig(SystemConfig systemConfig);
 
 }

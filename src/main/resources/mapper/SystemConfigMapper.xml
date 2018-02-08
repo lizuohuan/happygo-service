@@ -23,4 +23,9 @@
         parities, withdrawalProportion
     </sql>
 
+
+    <select id="querySystemConfig" resultMap="BaseResultMap">
+        SELECT * FROM t_system_config ORDER BY create_time DESC LIMIT 0,1
+    </select>
+
 </mapper>

@@ -6,6 +6,8 @@ import com.magicbeans.happygo.service.ISystemConfigService;
 import com.magicbeans.base.BaseServiceImp;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
 /**
  * <p>
  *  服务实现类
@@ -17,4 +19,21 @@ import org.springframework.stereotype.Service;
 @Service
 public class SystemConfigServiceImpl extends BaseServiceImp<SystemConfigMapper, SystemConfig> implements ISystemConfigService {
 
+    @Resource
+    private SystemConfigMapper systemConfigMapper;
+
+
+    @Override
+    public SystemConfig getSystemConfig() {
+        return systemConfigMapper.querySystemConfig();
+    }
+
+
+    @Override
+    public void updateSystemConfig(SystemConfig systemConfig) {
+        if(null != systemConfig.getId()){
+            systemConfig.setId(null);
+        }
+        systemConfigMapper.insert(systemConfig);
+    }
 }

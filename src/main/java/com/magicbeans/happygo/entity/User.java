@@ -83,8 +83,13 @@ public class User extends BaseEntity<User> {
     /** 邀请码 */
     private String shareCode;
 
-    // 业务类
+    /** 成为代理商的电话号码备注 */
+    private String businessPhone;
 
+    /** 申请代理商的状态 0 申请中  1 通过  2 拒绝通过 */
+    private Integer businessStatus;
+
+    // 业务类
 
 
     public String getPhone() {
@@ -276,5 +281,25 @@ public class User extends BaseEntity<User> {
 
     public void setShareCode(String shareCode) {
         this.shareCode = shareCode;
+    }
+
+    /** 获取 成为代理商的电话号码备注 */
+    public String getBusinessPhone() {
+        return this.businessPhone;
+    }
+
+    /** 设置 成为代理商的电话号码备注 */
+    public void setBusinessPhone(String businessPhone) {
+        this.businessPhone = businessPhone;
+    }
+
+    /** 获取 申请代理商的状态 0 申请中  1 通过  2 拒绝通过 */
+    public Integer getBusinessStatus() {
+        return this.businessStatus;
+    }
+
+    /** 设置 申请代理商的状态 0 申请中  1 通过  2 拒绝通过 */
+    public void setBusinessStatus(Integer businessStatus) {
+        this.businessStatus = businessStatus;
     }
 }

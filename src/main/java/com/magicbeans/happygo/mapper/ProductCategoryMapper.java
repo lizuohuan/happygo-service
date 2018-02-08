@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.magicbeans.happygo.entity.ProductCategory;
 import org.apache.ibatis.annotations.CacheNamespaceRef;
 
+import java.util.List;
+
 /**
  * 商品分类
  * @author lzh
@@ -11,4 +13,8 @@ import org.apache.ibatis.annotations.CacheNamespaceRef;
  */
 @CacheNamespaceRef(ProductCategoryMapper.class)
 public interface ProductCategoryMapper extends BaseMapper<ProductCategory> {
+
+
+    List<ProductCategory> queryAllCategory();
+
 }

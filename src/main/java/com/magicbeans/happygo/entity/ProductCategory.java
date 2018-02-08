@@ -21,6 +21,9 @@ public class ProductCategory extends BaseEntity<ProductCategory> {
     /** 上级分类id */
     private String parentId;
 
+    /** 分类图标URL */
+    private String icon;
+
     /**********************  业务字段  ************************/
 
     /** 分类子类 */
@@ -30,6 +33,8 @@ public class ProductCategory extends BaseEntity<ProductCategory> {
     /** 上级分类名 */
     @TableField(exist=false)
     private String parentName;
+
+
 
     /** 获取 分类名 */
     public String getName() {
@@ -69,5 +74,15 @@ public class ProductCategory extends BaseEntity<ProductCategory> {
     /** 设置 上级分类名 */
     public void setParentName(String parentName) {
         this.parentName = parentName;
+    }
+
+    /** 获取 分类图标URL */
+    public String getIcon() {
+        return this.icon;
+    }
+
+    /** 设置 分类图标URL */
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 }

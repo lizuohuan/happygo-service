@@ -35,7 +35,7 @@ public class ShopCarServiceImpl extends BaseServiceImp<ShopCarMapper, ShopCar> i
                 if(null == carIds){
                     carIds = new ArrayList<>();
                 }
-                carIds.add(split[0]);
+                carIds.add(split[i]);
             }
         }
         return shopCarMapper.queryShopCar(userId,carIds);

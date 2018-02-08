@@ -34,6 +34,8 @@
         <result column="shareCode" property="shareCode"/>
         <result column="businessPhone" property="businessPhone"/>
         <result column="businessStatus" property="businessStatus"/>
+        <result column="parentName" property="parentName"/>
+        <result column="roleName" property="roleName"/>
     </resultMap>
 
 
@@ -137,6 +139,89 @@
                 ),
                 ( SELECT tsc.parities FROM t_system_config tsc ORDER BY tsc.create_time DESC LIMIT 0, 1)
             ) AS parities
+    </select>
+
+
+    <select id="list" resultMap="BaseUser" parameterType="map">
+        SELECT
+        u.*,u2.nickName AS parentName
+        FROM t_users u
+        LEFT JOIN t_users u2 ON u.parentId = u2.id
+        WHERE 1 = 1
+        <if test="nickName != null and nickName != ''">
+            AND u.nickName like '%${nickName}%'
+        </if>
+        <if test="parentName != null and parentName != ''">
+            AND u2.nickName like '%${parentName}%'
+        </if>
+        <if test="phone != null and phone != ''">
+            AND u.phone like '%${phone}%'
+        </if>
+        <if test="idNumber != null and idNumber != ''">
+            AND u.idNumber like '%${idNumber}%'
+        </if>
+        <if test="status != null">
+            AND u.status = #{status}
+        </if>
+        <if test="gender != null">
+            AND u.gender = #{gender}
+        </if>
+        <if test="roleId != null">
+            AND u.roleId = #{roleId}
+        </if>
+        <if test="businessStatus != null">
+            AND u.businessStatus = #{businessStatus}
+        </if>
+        <if test="createTimeStart != null">
+            AND u.create_time <![CDATA[ >= ]]> #{createTimeStart}
+        </if>
+        <if test="createTimeEnd != null">
+            AND u.create_time <![CDATA[ <= ]]> #{createTimeEnd}
+        </if>
+        ORDER BY
+        u.create_time DESC
+        <if test="pages != null">
+            limit #{pages.current}, #{pages.size}
+        </if>
+    </select>
+
+
+    <select id="listCount" resultType="java.lang.Integer" parameterType="map">
+        SELECT
+        COUNT(0)
+        FROM t_users u
+        LEFT JOIN t_users u2 ON u.parentId = u2.id
+        WHERE 1 = 1
+        <if test="nickName != null and nickName != ''">
+            AND u.nickName like '%${nickName}%'
+        </if>
+        <if test="parentName != null and parentName != ''">
+            AND u2.nickName like '%${parentName}%'
+        </if>
+        <if test="phone != null and phone != ''">
+            AND u.phone like '%${phone}%'
+        </if>
+        <if test="idNumber != null and idNumber != ''">
+            AND u.idNumber like '%${idNumber}%'
+        </if>
+        <if test="status != null">
+            AND u.status = #{status}
+        </if>
+        <if test="gender != null">
+            AND u.gender = #{gender}
+        </if>
+        <if test="roleId != null">
+            AND u.roleId = #{roleId}
+        </if>
+        <if test="businessStatus != null">
+            AND u.businessStatus = #{businessStatus}
+        </if>
+        <if test="createTimeStart != null">
+            AND u.create_time <![CDATA[ >= ]]> #{createTimeStart}
+        </if>
+        <if test="createTimeEnd != null">
+            AND u.create_time <![CDATA[ <= ]]> #{createTimeEnd}
+        </if>
     </select>
 
 

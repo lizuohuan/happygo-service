@@ -1,8 +1,10 @@
 package com.magicbeans.happygo.entity;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.magicbeans.base.BaseEntity;
 import com.magicbeans.happygo.dto.DistributionUser;
+import com.magicbeans.happygo.util.CommonUtil;
 
 import java.util.Date;
 import java.util.List;
@@ -90,7 +92,9 @@ public class User extends BaseEntity<User> {
     private Integer businessStatus;
 
     // 业务类
-
+    /** 上级名 */
+    @TableField(exist = false)
+    private String parentName;
 
     public String getPhone() {
         return this.phone;
@@ -302,4 +306,72 @@ public class User extends BaseEntity<User> {
     public void setBusinessStatus(Integer businessStatus) {
         this.businessStatus = businessStatus;
     }
+
+    /** 获取 上级名 */
+    public String getParentName() {
+        return this.parentName;
+    }
+
+    /** 设置 上级名 */
+    public void setParentName(String parentName) {
+        this.parentName = parentName;
+    }
+
+    /** 性别字符串 */
+    public String getGenderStr() {
+        if (!CommonUtil.isEmpty(gender)) {
+            if (gender == 0) {
+                return "男";
+            } else {
+                return "女";
+            }
+        }
+        return "";
+    }
+
+    /** 申请代理商的状态字符串 */
+    public String getBusinessStatusStr() {
+        if (!CommonUtil.isEmpty(businessStatus)) {
+            if (businessStatus == 0) {
+                return "申请中";
+            } else if (businessStatus == 1)  {
+                return "通过";
+            } else {
+                return "拒绝";
+            }
+        }
+        return "";
+    }
+
+    /** 用户状态字符串 */
+    public String getStatusStr() {
+        if (!CommonUtil.isEmpty(status)) {
+            if (status == 0) {
+                return "无效/冻结";
+            } else {
+                return "有效";
+            }
+        }
+        return "";
+    }
+
+    /** 角色名 */
+    public String getRoleName() {
+        if (!CommonUtil.isEmpty(roleId)) {
+            if (roleId == 0) {
+                return "普通会员";
+            } else if (roleId == 1) {
+                return "代理商普通会员";
+            } else if (roleId == 2) {
+                return "代理商高级会员";
+            }else if (roleId == 3) {
+                return "代理商VIP会员";
+            } else {
+                return "代理商超级会员";
+            }
+        }
+        return "";
+    }
+
+
 }

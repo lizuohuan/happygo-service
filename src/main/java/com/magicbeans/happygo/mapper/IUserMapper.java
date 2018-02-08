@@ -53,4 +53,17 @@ public interface IUserMapper extends BaseMapper<User> {
      */
     Map<String,Object> countLastDay();
 
+    /**
+     * 订单集合
+     * @param map
+     * @return
+     */
+    List<User> list(Map<String ,Object> map);
+
+    /**
+     * 订单集合 条数
+     * @param map
+     * @return
+     */
+    int listCount(Map<String ,Object> map);
 }

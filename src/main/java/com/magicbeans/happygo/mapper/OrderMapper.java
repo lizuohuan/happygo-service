@@ -40,7 +40,7 @@ public interface OrderMapper extends BaseMapper<Order> {
      * @param map
      * @return
      */
-    List<Banner> list(Map<String ,Object> map);
+    List<Order> list(Map<String ,Object> map);
 
     /**
      * 订单集合 条数

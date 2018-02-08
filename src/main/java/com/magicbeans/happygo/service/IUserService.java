@@ -1,6 +1,7 @@
 package com.magicbeans.happygo.service;
 
 import com.magicbeans.base.BaseService;
+import com.magicbeans.base.Pages;
 import com.magicbeans.happygo.dto.DistributionUser;
 import com.magicbeans.happygo.entity.User;
 import org.apache.ibatis.annotations.Param;
@@ -48,5 +49,11 @@ public interface IUserService extends BaseService<User> {
      */
     void setAgent(String userId,Integer status) throws Exception;
 
-
+    /**
+     * 后台用户列表
+     * @param pages
+     * @param map
+     * @return
+     */
+    Pages<User> list(Pages pages, Map<String ,Object> map);
 }

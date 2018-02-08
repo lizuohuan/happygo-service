@@ -1,6 +1,7 @@
 package com.magicbeans.happygo.service.impl;
 
 import com.magicbeans.base.BaseServiceImp;
+import com.magicbeans.base.Pages;
 import com.magicbeans.happygo.dto.DistributionUser;
 import com.magicbeans.happygo.entity.User;
 import com.magicbeans.happygo.exception.InterfaceCommonException;
@@ -79,5 +80,17 @@ public class UserServiceImpl extends BaseServiceImp<IUserMapper,User> implements
         if(!CommonUtil.isEmpty(user.getToken())){
             redisService.set(user.getToken(),user,StatusConstant.LOGIN_VALID, TimeUnit.DAYS);
         }
+    }
+
+    @Override
+    public Pages<User> list(Pages pages, Map<String, Object> map) {
+        int count = userMapper.listCount(map);
+        pages.setTotal(count);
+        if (count > 0) {
+            pages.setCurrent(pages.getCurrent()-1);
+            map.put("pages",pages);
+            pages.setRecords(userMapper.list(map));
+        }
+        return pages;
     }
 }

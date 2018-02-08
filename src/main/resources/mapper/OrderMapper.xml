@@ -116,6 +116,8 @@
         FROM t_users u,t_address addr,t_order o
         LEFT JOIN admin a ON o.adminId = a.id
         WHERE 1 = 1
+        AND u.id = o.userId
+        AND addr.id = o.addressId
         <if test="orderNumber != null and orderNumber != ''">
             AND o.orderNumber like '%${orderNumber}%'
         </if>
@@ -160,6 +162,7 @@
         FROM t_users u,t_order o
         LEFT JOIN admin a ON o.adminId = a.id
         WHERE 1 = 1
+        AND u.id = o.userId
         <if test="orderNumber != null and orderNumber != ''">
             AND o.orderNumber like '%${orderNumber}%'
         </if>

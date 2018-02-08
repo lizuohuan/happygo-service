@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.magicbeans.base.BaseEntity;
+import com.magicbeans.happygo.util.CommonUtil;
+import com.magicbeans.happygo.util.StatusConstant;
 
 /**
  * <p>
@@ -58,9 +60,9 @@ public class Order extends BaseEntity<Order> {
 
     /**
      * 如果为线下支付，后台需要确认此订单已经支付，
-     * 如果确认已经支付 更改值为1，
-     * 如果不确认 则更改为 2
-     * 初始化为 0
+     * 如果确认已经支付 更改值为1， 已确认支付
+     * 如果不确认 则更改为 2 未支付
+     * 初始化为 0 待确认支付
      */
     private Integer adminOk;
 
@@ -238,5 +240,59 @@ public class Order extends BaseEntity<Order> {
     /** 设置 后台操作人员 */
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    /**
+     * 获取线下支付状态
+     * @return
+     */
+    public String getAdminOkStr() {
+        //支付方式不为空 并且为线下支付
+        if (!CommonUtil.isEmpty(payMethod) && payMethod.equals(StatusConstant.PAY_METHOD_UNDER_LINE)) {
+            if (!CommonUtil.isEmpty(adminOk)) {
+                if (adminOk == 0) {
+                    return "待确认支付";
+                }
+                if (adminOk == 2) {
+                    return "未支付";
+                }
+                return "已确认支付";
+            }
+            return "未支付";
+        }
+        return "";
+    }
+    /**
+     * 获取订单状态
+     * @return
+     */
+    public String getStatusStr() {
+        if (!CommonUtil.isEmpty(status)) {
+            if (status.equals(StatusConstant.ORDER_WAITING_PAY)) { return "待支付";}
+            if (status.equals(StatusConstant.ORDER_PAID)) { return "线下已支付-待后台确认"; }
+            if (status.equals(StatusConstant.ORDER_WAITING_SEND)) { return "待发货"; }
+            if (status.equals(StatusConstant.ORDER_SENT)) { return "已发货"; }
+            if (status.equals(StatusConstant.ORDER_FINISHED)) { return "已完成"; }
+            if (status.equals(StatusConstant.ORDER_CANCEL)) { return "已取消"; }
+            if (status.equals(StatusConstant.ORDER_REFUND)) { return "申请退款中"; }
+            if (status.equals(StatusConstant.ORDER_REFUSE_REFUND)) { return "拒绝退款"; }
+            if (status.equals(StatusConstant.ORDER_AGREE_REFUND)) { return "已退款"; }
+        }
+
+        return "";
+    }
+    /**
+     * 获取订单状态
+     * @return
+     */
+    public String getPayMethodStr() {
+        if (!CommonUtil.isEmpty(payMethod)) {
+            if (payMethod.equals(StatusConstant.PAY_METHOD_ALIPAY)) { return "支付宝";}
+            if (payMethod.equals(StatusConstant.PAY_METHOD_WECHAT)) { return "微信"; }
+            if (payMethod.equals(StatusConstant.PAY_METHOD_HXQ)) { return "欢喜券"; }
+            if (payMethod.equals(StatusConstant.PAY_METHOD_UNDER_LINE)) { return "线下"; }
+        }
+
+        return "";
     }
 }

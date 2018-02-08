@@ -32,6 +32,7 @@ public class BannerServiceImpl extends BaseServiceImp<BannerMapper, Banner> impl
         int count = bannerMapper.listCount(map);
         pages.setTotal(count);
         if (count > 0) {
+            pages.setCurrent(pages.getCurrent()-1);
             map.put("pages",pages);
             pages.setRecords(bannerMapper.list(map));
         }

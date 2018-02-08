@@ -92,7 +92,6 @@
 
     <select id="countLastDay" resultType="map">
         SELECT
-
             (
                 SELECT
                     IFNULL(SUM(IFNULL(tid.bigDecimal,0)),0)
@@ -125,7 +124,19 @@
                     )
                 AND tuc.isAdd = 1
                 AND tuc.isValid = 1
-            ) AS score
+            ) AS score,
+            IFNULL(
+                (
+                    SELECT
+                        tsc.parities
+                    FROM
+                        t_system_config tsc
+                    WHERE
+                        DATE_FORMAT(tsc.create_time, '%y-%m-%d') = DATE_FORMAT((SELECT DATE_SUB(curdate(), INTERVAL 1 DAY)), '%y-%m-%d')
+                    ORDER BY tsc.create_time DESC LIMIT 0, 1
+                ),
+                ( SELECT tsc.parities FROM t_system_config tsc ORDER BY tsc.create_time DESC LIMIT 0, 1)
+            ) AS parities
     </select>
 
 

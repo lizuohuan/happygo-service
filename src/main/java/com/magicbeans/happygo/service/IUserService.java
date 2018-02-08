@@ -34,4 +34,12 @@ public interface IUserService extends BaseService<User> {
      */
     User getUserByShareCode(String shareCode);
 
+    /**
+     * 统计昨日数据
+     * 积分(score)、欢喜券(bigDecimal)、单元总量(暂无)、转化率(parities)
+     * @return
+     */
+    Map<String,Object> countLastDay();
+
+
 }

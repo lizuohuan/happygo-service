@@ -28,18 +28,18 @@ public class SMSCode {
 
     public static boolean sendMessage(String text, String mobile) {
         boolean isSend = false;
-        return true;
-//		try {
-//			String result = sendSms(KEY,text,mobile);
-//
-//			JSONObject js = JSONObject.fromObject(result);
-//			if(0 == js.getInt("code")){
-//				isSend = true;
-//			}
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		return isSend;
+//        return true;
+		try {
+			String result = sendSms(KEY,text,mobile);
+
+			JSONObject js = JSONObject.fromObject(result);
+			if(0 == js.getInt("code")){
+				isSend = true;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return isSend;
     }
 
     public static String createRandomCode() {

@@ -34,7 +34,7 @@
             p.id AS productId,
             p.`name` AS productName,
             p.coverImg AS productCover,
-            p.price AS price,
+            IF(p.isPromotion = 1,p.promotionPrice,p.price) AS price,
             sc.number AS number,
             sc.id AS id
         FROM

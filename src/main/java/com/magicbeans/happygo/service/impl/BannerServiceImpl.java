@@ -1,5 +1,6 @@
 package com.magicbeans.happygo.service.impl;
 
+import com.magicbeans.base.PageableUtils;
 import com.magicbeans.base.Pages;
 import com.magicbeans.happygo.entity.Banner;
 import com.magicbeans.happygo.mapper.BannerMapper;
@@ -28,15 +29,6 @@ public class BannerServiceImpl extends BaseServiceImp<BannerMapper, Banner> impl
 
     @Override
     public Pages<Banner> list(Map<String, Object> map, Pages pages) {
-
-        int count = bannerMapper.listCount(map);
-        pages.setTotal(count);
-        if (count > 0) {
-            pages.setCurrent(pages.getCurrent());
-            map.put("pages",pages);
-            pages.setRecords(bannerMapper.list(map));
-        }
-
-        return pages;
+        return PageableUtils.query(pages,() -> bannerMapper.list(map));
     }
 }

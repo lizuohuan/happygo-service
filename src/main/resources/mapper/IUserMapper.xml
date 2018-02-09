@@ -180,9 +180,6 @@
         </if>
         ORDER BY
         u.create_time DESC
-        <if test="pages != null">
-            limit #{pages.current}, #{pages.size}
-        </if>
     </select>
 
 

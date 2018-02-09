@@ -1,5 +1,6 @@
 package com.magicbeans.happygo.service.impl;
 
+import com.magicbeans.base.PageableUtils;
 import com.magicbeans.happygo.entity.*;
 import com.magicbeans.base.Pages;
 import com.magicbeans.happygo.entity.Order;
@@ -365,14 +366,7 @@ public class OrderServiceImpl extends BaseServiceImp<OrderMapper, Order> impleme
      */
     @Override
     public Pages<Order> list(Pages pages, Map<String, Object> map) {
-        int count = orderMapper.listCount(map);
-        pages.setTotal(count);
-        if (count > 0) {
-            pages.setCurrent(pages.getCurrent()-1);
-            map.put("pages",pages);
-            pages.setRecords(orderMapper.list(map));
-        }
-        return pages;
+        return PageableUtils.query(pages,() -> orderMapper.list(map));
     }
 
     @Override

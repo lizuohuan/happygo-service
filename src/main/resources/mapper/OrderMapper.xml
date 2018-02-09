@@ -150,9 +150,9 @@
         </if>
         ORDER BY
         o.create_time DESC
-        <if test="pages != null">
+       <!-- <if test="pages != null">
             limit #{pages.current}, #{pages.size}
-        </if>
+        </if>-->
     </select>
 
 

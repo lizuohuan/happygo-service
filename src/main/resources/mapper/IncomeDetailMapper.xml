@@ -56,7 +56,7 @@
             IFNULL((SELECT SUM(IFNULL(tt.bigDecimal,0)) FROM t_income_detail tt WHERE tt.type IN (0,1) AND tt.isValid = 1 AND tt.toUserId = tid.toUserId),0) AS totalIncome,
             IFNULL((SELECT SUM(IFNULL(tt.bigDecimal,0)) FROM t_income_detail tt WHERE tt.type IN (0)
                             AND tt.toUserId = tid.toUserId AND tt.isValid = 1 AND tt.toUserId != tt.fromUserId),0) AS distributionIncome,
-            IFNULL((SELECT SUM(score) FROM t_user_score us WHERE us.userId = tid.toUserId AND us.isValid = 1),0) AS totalScore
+            IFNULL((SELECT SUM(score) FROM t_user_score us WHERE us.userId = #{toUserId} AND us.isValid = 1),0) AS totalScore
         FROM
             t_income_detail tid
         WHERE

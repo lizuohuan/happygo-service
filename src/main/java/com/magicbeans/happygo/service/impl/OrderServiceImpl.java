@@ -186,13 +186,13 @@ public class OrderServiceImpl extends BaseServiceImp<OrderMapper, Order> impleme
                             }
                         }
                         if(null != t){
-                            UserScore userScore = countIncome(product, parentUser, 1, config);
+                            UserScore userScore = countIncome(product, t, 1, config);
                             if(null != userScore){
                                 userScoreMapper.insert(userScore);
                             }
                         }
                         if(null != th){
-                            UserScore userScore = countIncome(product, parentUser, 1, config);
+                            UserScore userScore = countIncome(product, th, 1, config);
                             if(null != userScore){
                                 userScoreMapper.insert(userScore);
                             }

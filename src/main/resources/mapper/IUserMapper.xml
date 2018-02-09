@@ -57,8 +57,10 @@
             u.id AS userId,
             IFNULL(u.nickName,u.phone) AS nickName,
             u.profilePicture,
-            (SELECT SUM(ii.bigDecimal) FROM t_income_detail ii
-            WHERE  ii.fromUserId = u.id AND ii.toUserId = #{userId}) AS bigDecimal
+            (SELECT SUM(us.score) FROM t_user_score us ,t_order o
+            WHERE o.id = us.orderId
+            AND o.userId = u.id
+            AND us.userId = #{userId}) AS bigDecimal
         FROM
             t_users u
         WHERE

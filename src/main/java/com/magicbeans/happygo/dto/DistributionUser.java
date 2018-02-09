@@ -16,8 +16,9 @@ public class DistributionUser {
     /** 头像 */
     private String profilePicture;
 
-    /** 带来的收益 */
-    private BigDecimal bigDecimal;
+    /** 带来的收益 积分 */
+//    private BigDecimal bigDecimal;
+    private Integer bigDecimal;
 
 
     public String getUserId() {
@@ -45,11 +46,21 @@ public class DistributionUser {
         this.profilePicture = profilePicture;
     }
 
-    public BigDecimal getBigDecimal() {
+    /** 获取 带来的收益 */
+    public Integer getBigDecimal() {
         return this.bigDecimal;
     }
 
-    public void setBigDecimal(BigDecimal bigDecimal) {
+    /** 设置 带来的收益 */
+    public void setBigDecimal(Integer bigDecimal) {
         this.bigDecimal = bigDecimal;
     }
+
+//    public BigDecimal getBigDecimal() {
+//        return this.bigDecimal;
+//    }
+//
+//    public void setBigDecimal(BigDecimal bigDecimal) {
+//        this.bigDecimal = bigDecimal;
+//    }
 }

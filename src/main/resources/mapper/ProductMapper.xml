@@ -31,6 +31,7 @@
             p.`name` AS productName,
             p.coverImg AS productCoverImg,
             p.price AS price,
+            p.integral ,
             p.promotionPrice AS promotionPrice,
             (SELECT COUNT(0) FROM t_comment tc WHERE p.id = tc.productId) AS comments,
             (SELECT (SUM(tc.score) / COUNT(0)) FROM t_comment tc WHERE p.id = tc.productId) AS commentRatio
@@ -60,6 +61,7 @@
         SELECT
             p.id AS productId,
             p.`name` AS productName,
+            p.integral ,
             p.coverImg AS productCoverImg,
             p.price AS price,
             (SELECT COUNT(0) FROM t_comment tc WHERE p.id = tc.productId) AS comments,

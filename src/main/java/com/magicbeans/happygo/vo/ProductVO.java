@@ -28,6 +28,9 @@ public class ProductVO {
     /** 商品好评率 */
     private Double commentRatio;
 
+    /** 积分 */
+    private Integer integral;
+
 
     public String getProductId() {
         return this.productId;
@@ -85,5 +88,15 @@ public class ProductVO {
     /** 设置 促销价格 */
     public void setPromotionPrice(BigDecimal promotionPrice) {
         this.promotionPrice = promotionPrice;
+    }
+
+    /** 获取 积分 */
+    public Integer getIntegral() {
+        return this.integral;
+    }
+
+    /** 设置 积分 */
+    public void setIntegral(Integer integral) {
+        this.integral = integral;
     }
 }
